@@ -1,5 +1,5 @@
-/*******************************************************************************
- * Copyright (C) 2012-2014 CNRS and University of Strasbourg
+/*
+ * Copyright (C) 2012-2019 CNRS and University of Strasbourg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- ******************************************************************************/
+ */
 package com.github.cetoolbox.fragments.tabs;
 
 import android.app.Activity;
@@ -26,10 +26,12 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import java.text.DecimalFormat;
@@ -52,7 +54,6 @@ public class InjectionActivity extends Activity implements
 	EditText concentrationValue;
 	EditText molecularWeightValue;
 	EditText voltageValue;
-	TextView tvConcentrationUnits;
 	Spinner concentrationSpin;
 	int concentrationSpinPosition;
 	Spinner pressureSpin;
@@ -86,16 +87,16 @@ public class InjectionActivity extends Activity implements
 				getBaseContext().getResources().getDisplayMetrics());
 		this.setContentView(R.layout.injection);
 
-		capillaryLengthValue = (EditText) findViewById(R.id.capillaryLengthValue);
-		diameterValue = (EditText) findViewById(R.id.diameterValue);
-		toWindowLengthValue = (EditText) findViewById(R.id.toWindowLengthValue);
-		pressureValue = (EditText) findViewById(R.id.pressureValue);
-		durationValue = (EditText) findViewById(R.id.durationValue);
-		viscosityValue = (EditText) findViewById(R.id.viscosityValue);
-		concentrationValue = (EditText) findViewById(R.id.concentrationValue);
-		molecularWeightValue = (EditText) findViewById(R.id.molecularWeightValue);
-		voltageValue = (EditText) findViewById(R.id.voltageValue);
-		concentrationSpin = (Spinner) findViewById(R.id.concentrationSpin);
+		capillaryLengthValue = findViewById(R.id.capillaryLengthValue);
+		diameterValue = findViewById(R.id.diameterValue);
+		toWindowLengthValue = findViewById(R.id.toWindowLengthValue);
+		pressureValue = findViewById(R.id.pressureValue);
+		durationValue = findViewById(R.id.durationValue);
+		viscosityValue = findViewById(R.id.viscosityValue);
+		concentrationValue = findViewById(R.id.concentrationValue);
+		molecularWeightValue = findViewById(R.id.molecularWeightValue);
+		voltageValue = findViewById(R.id.voltageValue);
+		concentrationSpin = findViewById(R.id.concentrationSpin);
 		concentrationSpin.setOnItemSelectedListener(this);
 		ArrayAdapter<CharSequence> concentrationUnitsAdapter = ArrayAdapter
 				.createFromResource(this, R.array.concentrationUnitArray,
@@ -104,7 +105,7 @@ public class InjectionActivity extends Activity implements
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		concentrationSpin.setAdapter(concentrationUnitsAdapter);
 
-		pressureSpin = (Spinner) findViewById(R.id.pressureSpin);
+		pressureSpin = findViewById(R.id.pressureSpin);
 		pressureSpin.setOnItemSelectedListener(this);
 		ArrayAdapter<CharSequence> pressureUnitsAdapter = ArrayAdapter
 				.createFromResource(this, R.array.pressureUnitArray,
@@ -113,9 +114,9 @@ public class InjectionActivity extends Activity implements
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		pressureSpin.setAdapter(pressureUnitsAdapter);
 
-		calculate = (Button) findViewById(R.id.button1);
+		calculate =  findViewById(R.id.button1);
 		calculate.setOnClickListener(this);
-		reset = (Button) findViewById(R.id.button2);
+		reset = findViewById(R.id.button2);
 		reset.setOnClickListener(this);
 
 		getGlobalStateValues();
@@ -310,7 +311,7 @@ public class InjectionActivity extends Activity implements
 				editor.putLong("molecularWeight",
 						Double.doubleToLongBits(molecularWeight));
 				editor.putLong("voltage", Double.doubleToLongBits(voltage));
-				editor.commit();
+				editor.apply();
 
 				capillary = new CapillaryElectrophoresis(pressureMBar,
 						diameter, duration, viscosity, capillaryLength,
@@ -436,7 +437,12 @@ public class InjectionActivity extends Activity implements
 							}
 						});
 
-				builder.show();
+				final AlertDialog dialog = builder.create();
+				dialog.show();
+				final Button neutralButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+				LinearLayout.LayoutParams neutralButtonLL = (LinearLayout.LayoutParams) neutralButton.getLayoutParams();
+				neutralButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+				neutralButton.setLayoutParams(neutralButtonLL);
 			} else {
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
