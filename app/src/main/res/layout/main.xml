@@ -17,32 +17,36 @@
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/tabhost"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:padding="5dp" >
+        android:orientation="vertical">
 
         <HorizontalScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="#cccccc"
             android:fillViewport="true"
-            android:scrollbars="horizontal">
+            android:scrollbars="none">
+
 
             <TabWidget
                 android:id="@android:id/tabs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="bottom" />
+                android:gravity="fill_horizontal"
+                android:scrollbars="none"
+                android:showDividers="middle"
+                android:visibility="visible" />
         </HorizontalScrollView>
 
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:padding="5dp" />
+            android:padding="5dp"/>
     </LinearLayout>
 
 </TabHost>
