@@ -26,10 +26,12 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import java.text.DecimalFormat;
@@ -412,8 +414,12 @@ public class MobilityActivity extends Activity implements
 							}
 						});
 
-				builder.show();
-			} else {
+				final AlertDialog dialog = builder.create();
+				dialog.show();
+				final Button neutralButton = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+				LinearLayout.LayoutParams neutralButtonLL = (LinearLayout.LayoutParams) neutralButton.getLayoutParams();
+				neutralButtonLL.width = ViewGroup.LayoutParams.MATCH_PARENT;
+				neutralButton.setLayoutParams(neutralButtonLL);			} else {
 
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
