@@ -57,5 +57,12 @@
     <string name="ElectroOsmosisTime">Electro-osmosis time</string>
     <string name="LengthPerMinute">Length per minute: </string>
     <string name="MicroEOF">μEOF</string>
+    <string name="About_title">CEToolbox v1.3</string>
+    <string name="About_description">The Capillary Electrophoresis (CE) Toolbox is a software for computing
+    Capillary Electrophoresis parameters developed by the <a href="https://complex-matter.unistra.fr/equipes-de-recherche/laboratoire-de-spectrometrie-de-masse-des-interactions-et-des-systemes/accueil/">LSMIS</a>
+    and the <a href="http://www.iphc.cnrs.fr">IPHC</a> laboratories.</string>
+    <string name="About_website">For more informations, visit the website: <a href="https://cetoolbox.github.io/">https://cetoolbox.github.io/</a></string>
+    <string name="About_license">CEToolbox is
+    licensed under the Apache License, Version 2.0. You may obtain a copy of the License at: <a href="https://www.apache.org/licenses/LICENSE-2.0.txt">https://www.apache.org/licenses/LICENSE-2.0.txt</a></string>
 
 </resources>
