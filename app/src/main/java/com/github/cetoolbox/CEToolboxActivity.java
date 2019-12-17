@@ -1,5 +1,5 @@
-/*******************************************************************************
- * Copyright (C) 2012-2014 CNRS and University of Strasbourg
+/*
+ * Copyright (C) 2012-2019 CNRS and University of Strasbourg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- ******************************************************************************/
+ */
 package com.github.cetoolbox;
 
 import com.github.cetoolbox.fragments.tabs.AboutActivity;
@@ -25,13 +25,14 @@ import com.github.cetoolbox.GlobalState;
 
 import android.os.Bundle;
 import android.app.TabActivity;
+
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.TabHost;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.content.SharedPreferences;
-
-import com.github.cetoolbox.R;
 
 public class CEToolboxActivity extends TabActivity {
 
@@ -97,28 +98,6 @@ public class CEToolboxActivity extends TabActivity {
 					res.getDrawable(R.drawable.ic_action_about));
 			tabHost.addTab(spec);
 
-			/* width = number of letters * 10 + 10 */
-			int displayWidth = getWindowManager().getDefaultDisplay()
-					.getWidth();
-			int defaultTabWidth = 100;
-			if ((defaultTabWidth * tabHost.getTabWidget().getChildCount()) < displayWidth) {
-				defaultTabWidth = (int) Math.ceil(displayWidth
-						/ tabHost.getTabWidget().getChildCount());
-
-			}
-
-			for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
-				tabHost.getTabWidget().getChildAt(i).getLayoutParams().width = defaultTabWidth;
-			}
-
-			/*
-			 * tabHost.getTabWidget().getChildAt(1).getLayoutParams().width =
-			 * 70; tabHost.getTabWidget().getChildAt(2).getLayoutParams().width
-			 * = 60;
-			 * tabHost.getTabWidget().getChildAt(3).getLayoutParams().width =
-			 * 160; tabHost.getTabWidget().getChildAt(4).getLayoutParams().width
-			 * = 160;
-			 */
 			tabHost.setCurrentTab(0);
 		} catch (ActivityNotFoundException e) {
 			/* e.printStackTrace(); */
