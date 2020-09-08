@@ -268,7 +268,7 @@ public class ViscosityActivity extends Activity implements
 				editor.putInt("detectionTimeSpinPosition",
 						detectionTimeSpinPosition);
 
-				editor.commit();
+				editor.apply();
 
 				capillary = new CapillaryElectrophoresis();
 				capillary.setTotalLength(capillaryLength);

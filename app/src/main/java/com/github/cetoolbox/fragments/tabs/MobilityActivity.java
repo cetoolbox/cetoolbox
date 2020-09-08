@@ -336,7 +336,7 @@ public class MobilityActivity extends Activity implements
 				editor.putLong("molecularWeight",
 						Double.doubleToLongBits(molecularWeight));
 
-				editor.commit();
+				editor.apply();
 
 				capillary = new CapillaryElectrophoresis(pressureMBar,
 						diameter, duration, viscosity, capillaryLength,

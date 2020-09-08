@@ -243,7 +243,7 @@ public class FlowrateActivity extends Activity implements
 				editor.putInt("electroOsmosisTimeSpinPosition",
 						electroOsmosisTimeSpinPosition);
 
-				editor.commit();
+				editor.apply();
 
 				capillary = new CapillaryElectrophoresis();
 				capillary.setTotalLength(capillaryLength);

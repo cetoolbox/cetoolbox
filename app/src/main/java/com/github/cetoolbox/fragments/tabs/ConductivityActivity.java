@@ -219,7 +219,7 @@ public class ConductivityActivity extends Activity implements
 				editor.putLong("electricCurrent",
 						Double.doubleToLongBits(electricCurrent));
 
-				editor.commit();
+				editor.apply();
 
 				capillary = new CapillaryElectrophoresis();
 				capillary.setTotalLength(capillaryLength);
