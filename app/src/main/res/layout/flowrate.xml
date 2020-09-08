@@ -15,6 +15,7 @@
   limitations under the License.
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_weight="1" >
@@ -176,13 +177,16 @@
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/Calculate" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Reset" />
+                style="?android:attr/borderlessButtonStyle"
+                android:text="@string/Reset"
+                tools:ignore="ButtonStyle" />
         </TableRow>
     </TableLayout>
 
