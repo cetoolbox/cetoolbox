@@ -26,8 +26,6 @@ import com.github.cetoolbox.GlobalState;
 import android.os.Bundle;
 import android.app.TabActivity;
 
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.TabHost;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;

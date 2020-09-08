@@ -14,44 +14,69 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/about_title"
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="@string/About_title"
-        android:textAlignment="viewStart"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/about_description"
+        <TextView
+            android:id="@+id/about_title"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:padding="5dp"
+            android:text="@string/About_title"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/about_version"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="@string/app_version"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="@string/About_description" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/about_website"
+        <TextView
+            android:id="@+id/about_description"
+            android:layout_span="2"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/About_description" />
+    </TableRow>
+
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:padding="5dp"
-        android:text="@string/About_website" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/about_license"
+        <TextView
+            android:id="@+id/about_website"
+            android:layout_span="2"
+            android:layout_weight="1"
+            android:autoLink="web"
+            android:padding="5dp"
+            android:text="@string/About_website" />
+    </TableRow>
+
+    <TableRow
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:padding="5dp"
-        android:text="@string/About_license" />
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/about_license"
+            android:layout_span="2"
+            android:layout_weight="1"
+            android:autoLink="web"
+            android:padding="5dp"
+            android:text="@string/About_license" />
+    </TableRow>
+</TableLayout>
