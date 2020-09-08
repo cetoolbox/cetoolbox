@@ -197,7 +197,7 @@ public class CapillaryElectrophoresis {
 		microEOF = (totalLength * toWindowLength)
 				/ (electroOsmosisTime * voltage);
 		return microEOF;
-	};
+	}
 
 	public double getLengthPerMinute() {
 		double lengthPerMinute;

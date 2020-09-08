@@ -38,7 +38,6 @@
     <string name="Vpercm">V/cm</string>
     <string name="Volt">V</string>
     <string name="ElectricCurrent">Electric current: </string>
-    <string name="None"></string>
     <string name="Volume">Volume</string>
     <string name="Conductivity">Conductivity</string>
     <string name="Flow">Flow</string>
@@ -57,7 +56,7 @@
     <string name="ElectroOsmosisTime">Electro-osmosis time</string>
     <string name="LengthPerMinute">Length per minute: </string>
     <string name="MicroEOF">μEOF</string>
-    <string name="About_title">CEToolbox v1.3</string>
+    <string name="About_title">CEToolbox</string>
     <string name="About_description">The Capillary Electrophoresis (CE) Toolbox is a software for computing
     Capillary Electrophoresis parameters developed by the <a href="https://complex-matter.unistra.fr/equipes-de-recherche/laboratoire-de-spectrometrie-de-masse-des-interactions-et-des-systemes/accueil/">LSMIS</a>
     and the <a href="http://www.iphc.cnrs.fr">IPHC</a> laboratories.</string>
