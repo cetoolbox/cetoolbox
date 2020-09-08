@@ -33,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/capillaryLengthValue"
                 android:text="@string/CapillaryLength" >
 
                 <requestFocus />
@@ -63,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/toWindowLengthValue"
                 android:text="@string/toWindowLength" />
 
             <EditText
@@ -90,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/diameterValue"
                 android:text="@string/InsideDiameter" />
 
             <EditText
@@ -117,6 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/pressureValue"
                 android:text="@string/Pressure" />
 
             <EditText
@@ -144,6 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/durationValue"
                 android:text="@string/Time" />
 
             <EditText
@@ -171,6 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/viscosityValue"
                 android:text="@string/Viscosity" />
 
             <EditText
@@ -198,6 +204,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/concentrationValue"
                 android:text="@string/Concentration" />
 
             <EditText
@@ -225,6 +232,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/molecularWeightValue"
                 android:text="@string/MolecularWeight" />
 
             <EditText
@@ -252,6 +260,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/voltageValue"
                 android:text="@string/Voltage" />
 
             <EditText

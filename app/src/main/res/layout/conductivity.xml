@@ -33,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/capillaryLengthValue"
                 android:text="@string/CapillaryLength" >
 
                 <requestFocus />
@@ -63,6 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/toWindowLengthValue"
                 android:text="@string/toWindowLength" />
 
             <EditText
@@ -90,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/diameterValue"
                 android:text="@string/InsideDiameter" />
 
             <EditText
@@ -117,6 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/voltageValue"
                 android:text="@string/Voltage" />
 
             <EditText
@@ -144,6 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/electricCurrentValue"
                 android:text="@string/ElectricCurrent" />
 
             <EditText
