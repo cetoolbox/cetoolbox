@@ -35,13 +35,9 @@
     <string name="Micrometer">μm</string>
     <string name="Second">s</string>
     <string name="Gpermol">g/mol</string>
-    <string name="Vpercm">V/cm</string>
     <string name="Volt">V</string>
     <string name="ElectricCurrent">Electric current: </string>
-    <string name="Volume">Volume</string>
     <string name="Conductivity">Conductivity</string>
-    <string name="Flow">Flow</string>
-    <string name="About">About</string>
     <string name="HydrodynamicInjection">Hydrodynamic injection: </string>
     <string name="CapillaryVolume">Capillary volume: </string>
     <string name="PlugLength">Plug (% of total length): </string>
