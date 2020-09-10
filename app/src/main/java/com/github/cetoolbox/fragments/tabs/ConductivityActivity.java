@@ -56,7 +56,6 @@ public class ConductivityActivity extends Activity implements
 	Double toWindowLength;
 	Double diameter;
 	Double voltage;
-	String voltageUnit;
 	Double electricCurrent;
 
 	/** Called when the activity is first created. */
@@ -344,6 +343,9 @@ public class ConductivityActivity extends Activity implements
 
 	@Override
 	public void onSaveInstanceState(Bundle state) {
+		// call the super class onCreate to complete the creation of activity like
+		// the view hierarchy
+
 		try {
 			state.putDouble("capillaryLength",
 					Double.valueOf(capillaryLengthValue.getText().toString()));

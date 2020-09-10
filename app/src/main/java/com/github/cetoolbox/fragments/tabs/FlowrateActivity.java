@@ -53,7 +53,6 @@ public class FlowrateActivity extends Activity implements
 	EditText diameterValue;
 	EditText electroOsmosisTimeValue;
 	EditText voltageValue;
-	TextView tvElectroOsmosisTimeUnits;
 	Spinner electroOsmosisTimeSpin;
 	int electroOsmosisTimeSpinPosition;
 
@@ -250,7 +249,7 @@ public class FlowrateActivity extends Activity implements
 				capillary.setToWindowLength(toWindowLength);
 				capillary.setDiameter(diameter);
 				capillary.setVoltage(voltage);
-				Double electroOsmosisTimeSecond = 0.0;
+				Double electroOsmosisTimeSecond;
 				if (electroOsmosisTimeUnit.compareTo("min") == 0) {
 					electroOsmosisTimeSecond = electroOsmosisTime * 60;
 				} else {

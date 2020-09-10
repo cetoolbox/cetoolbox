@@ -56,7 +56,6 @@ public class MobilityActivity extends Activity implements
 	EditText toWindowLengthValue;
 	EditText concentrationValue;
 	EditText molecularWeightValue;
-	TextView tvConcentrationUnits;
 	Spinner concentrationSpin;
 	int concentrationSpinPosition;
 	Spinner pressureSpin;
