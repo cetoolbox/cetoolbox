@@ -24,12 +24,10 @@
         android:layout_height="wrap_content" >
 
         <TableRow
-            android:id="@+id/capillaryLengthRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/capillaryLengthLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -47,7 +45,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/capillaryLengthUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -55,12 +52,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/toWindowLengthRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/toWindowLengthLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -75,7 +70,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/toWindowLengthUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -83,12 +77,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/diameterRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/diameterLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -103,7 +95,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/insideDiameterUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -111,12 +102,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/pressureRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/pressureLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -139,12 +128,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/durationRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/durationLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -159,7 +146,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/durationUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -167,12 +153,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/viscosityRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/viscosityLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -187,7 +171,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/viscosityUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -195,12 +178,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/concentrationRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/concentrationLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -223,12 +204,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/molecularWeightRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/molecularWeightLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -243,7 +222,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/molecularWeightUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -251,7 +229,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/buttonRow"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center">

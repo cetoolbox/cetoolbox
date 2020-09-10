@@ -24,12 +24,10 @@
         android:layout_height="wrap_content" >
 
         <TableRow
-            android:id="@+id/capillaryLengthRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/capillaryLengthLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -47,7 +45,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/capillaryLengthUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -55,12 +52,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/toWindowLengthRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/toWindowLengthLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -75,7 +70,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/toWindowLengthUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -83,12 +77,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/diameterRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/diameterLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -103,7 +95,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/insideDiameterUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -111,12 +102,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/voltageRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/voltageLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -131,7 +120,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/voltageUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -139,12 +127,10 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/electricCurrentRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/electricCurrentLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -159,7 +145,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/electricCurrentUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -167,7 +152,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/buttonRow"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
