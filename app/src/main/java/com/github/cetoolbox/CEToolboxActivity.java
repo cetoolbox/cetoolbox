@@ -74,12 +74,10 @@ public class CEToolboxActivity extends TabActivity {
 					res.getDrawable(R.drawable.ic_action_flowrate));
 			tabHost.addTab(spec);
 
-			/*
-			 * intent = new Intent(this.getBaseContext(),
-			 * MobilityActivity.class); spec = tabHost.newTabSpec("mobility");
-			 * spec.setContent(intent); spec.setIndicator("Mobility");
-			 * tabHost.addTab(spec);
-			 */
+			intent = new Intent(this.getBaseContext(),
+			MobilityActivity.class); spec = tabHost.newTabSpec("mobility");
+			spec.setContent(intent); spec.setIndicator("Mobility");
+			tabHost.addTab(spec);
 
 			intent = new Intent(this.getBaseContext(), ViscosityActivity.class);
 			spec = tabHost.newTabSpec("viscosity");
