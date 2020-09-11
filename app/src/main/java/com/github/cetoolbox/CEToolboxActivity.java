@@ -15,21 +15,19 @@
  */
 package com.github.cetoolbox;
 
+import android.os.Bundle;
+import android.app.TabActivity;
+import android.widget.TabHost;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.content.SharedPreferences;
 import com.github.cetoolbox.fragments.tabs.AboutActivity;
 import com.github.cetoolbox.fragments.tabs.ConductivityActivity;
 import com.github.cetoolbox.fragments.tabs.FlowrateActivity;
 import com.github.cetoolbox.fragments.tabs.InjectionActivity;
 import com.github.cetoolbox.fragments.tabs.MobilityActivity;
 import com.github.cetoolbox.fragments.tabs.ViscosityActivity;
-
-import android.os.Bundle;
-import android.app.TabActivity;
-
-import android.widget.TabHost;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.content.SharedPreferences;
 
 public class CEToolboxActivity extends TabActivity {
 

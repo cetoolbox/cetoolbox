@@ -36,7 +36,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.util.Locale;
-
 import com.github.cetoolbox.CEToolboxActivity;
 import com.github.cetoolbox.CapillaryElectrophoresis;
 import com.github.cetoolbox.R;

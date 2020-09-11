@@ -1,4 +1,4 @@
-/*******************************************************************************
+/*
  * Copyright (C) 2012-2014 CNRS and University of Strasbourg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- ******************************************************************************/
+ */
 package com.github.cetoolbox.fragments.tabs;
 
 import android.app.Activity;
@@ -33,10 +33,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import java.text.DecimalFormat;
 import java.util.Locale;
-
 import com.github.cetoolbox.CEToolboxActivity;
 import com.github.cetoolbox.CapillaryElectrophoresis;
 import com.github.cetoolbox.R;
