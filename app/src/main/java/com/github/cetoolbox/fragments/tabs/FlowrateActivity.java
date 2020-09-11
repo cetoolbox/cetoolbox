@@ -44,8 +44,6 @@ import com.github.cetoolbox.R;
 public class FlowrateActivity extends Activity implements
 		AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-	public static final String PREFS_NAME = "capillary.electrophoresis.toolbox.PREFERENCE_FILE_KEY";
-
 	Button calculate;
 	Button reset;
 	EditText capillaryLengthValue;
@@ -227,9 +225,8 @@ public class FlowrateActivity extends Activity implements
 			}
 			if (validatedValues) {
 				/* If all is fine, save the data and compute */
-				SharedPreferences preferences = getSharedPreferences(
-						PREFS_NAME, 0);
-				SharedPreferences.Editor editor = preferences.edit();
+				SharedPreferences.Editor editor =  CEToolboxActivity.preferences
+						.edit();
 
 				editor.putLong("capillaryLength",
 						Double.doubleToLongBits(capillaryLength));

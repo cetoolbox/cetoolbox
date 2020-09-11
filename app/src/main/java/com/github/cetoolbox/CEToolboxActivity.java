@@ -21,7 +21,6 @@ import com.github.cetoolbox.fragments.tabs.FlowrateActivity;
 import com.github.cetoolbox.fragments.tabs.InjectionActivity;
 import com.github.cetoolbox.fragments.tabs.MobilityActivity;
 import com.github.cetoolbox.fragments.tabs.ViscosityActivity;
-import com.github.cetoolbox.GlobalState;
 
 import android.os.Bundle;
 import android.app.TabActivity;
@@ -69,7 +68,7 @@ public class CEToolboxActivity extends TabActivity {
 			tabHost.addTab(spec);
 
 			intent = new Intent(this.getBaseContext(), FlowrateActivity.class);
-			spec = tabHost.newTabSpec("flowate");
+			spec = tabHost.newTabSpec("flowrate");
 			spec.setContent(intent);
 			spec.setIndicator("Flowrate",
 					res.getDrawable(R.drawable.ic_action_flowrate));
