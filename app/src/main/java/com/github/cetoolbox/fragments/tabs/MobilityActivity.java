@@ -18,10 +18,9 @@ package com.github.cetoolbox.fragments.tabs;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -34,44 +33,41 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import java.text.DecimalFormat;
-import java.util.Locale;
+
 import com.github.cetoolbox.CEToolboxActivity;
 import com.github.cetoolbox.CapillaryElectrophoresis;
 import com.github.cetoolbox.R;
 
+import java.text.DecimalFormat;
+import java.util.Locale;
+
 public class MobilityActivity extends Activity implements
         AdapterView.OnItemSelectedListener, View.OnClickListener {
-
+    static final int timePeakNumber = 20;
     Button calculate;
     Button reset;
     EditText capillaryLengthValue;
-    EditText diameterValue;
-    EditText pressureValue;
-    EditText durationValue;
-    EditText viscosityValue;
     EditText toWindowLengthValue;
-    EditText concentrationValue;
-    EditText molecularWeightValue;
-    Spinner concentrationSpin;
-    int concentrationSpinPosition;
-    Spinner pressureSpin;
-    int pressureSpinPosition;
+    EditText diameterValue;
+    EditText voltageValue;
+    EditText electroOsmosisTimeValue;
+    Spinner electroOsmosisTimeSpin;
+    int electroOsmosisTimeSpinPosition;
+    EditText[] timePeakValues = new EditText[timePeakNumber];
 
     CapillaryElectrophoresis capillary;
 
     Double capillaryLength;
     Double toWindowLength;
     Double diameter;
-    Double pressure;
-    String pressureUnit;
-    Double duration;
-    Double viscosity;
-    Double concentration;
-    String concentrationUnit;
-    Double molecularWeight;
+    Double voltage;
+    Double electroOsmosisTime;
+    String electroOsmosisTimeUnit;
+    Double[] timePeaks = new Double[timePeakNumber];
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,35 +81,32 @@ public class MobilityActivity extends Activity implements
                 getBaseContext().getResources().getDisplayMetrics());
         this.setContentView(R.layout.mobility);
 
-        capillaryLengthValue = (EditText) findViewById(R.id.capillaryLengthValue);
-        diameterValue = (EditText) findViewById(R.id.diameterValue);
-        toWindowLengthValue = (EditText) findViewById(R.id.toWindowLengthValue);
-        pressureValue = (EditText) findViewById(R.id.pressureValue);
-        durationValue = (EditText) findViewById(R.id.durationValue);
-        viscosityValue = (EditText) findViewById(R.id.viscosityValue);
-        concentrationValue = (EditText) findViewById(R.id.concentrationValue);
-        molecularWeightValue = (EditText) findViewById(R.id.molecularWeightValue);
-        concentrationSpin = (Spinner) findViewById(R.id.concentrationSpin);
-        concentrationSpin.setOnItemSelectedListener(this);
-        ArrayAdapter<CharSequence> concentrationUnitsAdapter = ArrayAdapter
-                .createFromResource(this, R.array.concentrationUnitArray,
+        capillaryLengthValue = findViewById(R.id.capillaryLengthValue);
+        diameterValue = findViewById(R.id.diameterValue);
+        toWindowLengthValue = findViewById(R.id.toWindowLengthValue);
+        electroOsmosisTimeValue = findViewById(R.id.electroOsmosisTimeValue);
+        electroOsmosisTimeSpin = findViewById(R.id.electroOsmosisTimeSpin);
+        electroOsmosisTimeSpin.setOnItemSelectedListener(this);
+        ArrayAdapter<CharSequence> electroOsmosisTimeUnitsAdapter = ArrayAdapter
+                .createFromResource(this, R.array.electroOsmosisTimeUnitArray,
                         android.R.layout.simple_spinner_item);
-        concentrationUnitsAdapter
+        electroOsmosisTimeUnitsAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        concentrationSpin.setAdapter(concentrationUnitsAdapter);
+        electroOsmosisTimeSpin.setAdapter(electroOsmosisTimeUnitsAdapter);
+        voltageValue = findViewById(R.id.voltageValue);
 
-        pressureSpin = (Spinner) findViewById(R.id.pressureSpin);
-        pressureSpin.setOnItemSelectedListener(this);
-        ArrayAdapter<CharSequence> pressureUnitsAdapter = ArrayAdapter
-                .createFromResource(this, R.array.pressureUnitArray,
-                        android.R.layout.simple_spinner_item);
-        pressureUnitsAdapter
-                .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pressureSpin.setAdapter(pressureUnitsAdapter);
+        /*timePeakValues = new EditText[timePeakNumber];*/
 
-        calculate = (Button) findViewById(R.id.button1);
+        for (int i = 0; i < timePeakNumber; i++) {
+            String peak_name = String.format("timePeakValue%d", i);
+            int resID = getResources().getIdentifier(peak_name,
+                    "id", getPackageName());
+            timePeakValues[i] = findViewById(resID);
+        }
+
+        calculate = findViewById(R.id.button1);
         calculate.setOnClickListener(this);
-        reset = (Button) findViewById(R.id.button2);
+        reset = findViewById(R.id.button2);
         reset.setOnClickListener(this);
 
         getGlobalStateValues();
@@ -126,15 +119,14 @@ public class MobilityActivity extends Activity implements
         capillaryLength = savedInstanceState.getDouble("capillaryLength");
         toWindowLength = savedInstanceState.getDouble("toWindowLength");
         diameter = savedInstanceState.getDouble("diameter");
-        pressure = savedInstanceState.getDouble("pressure");
-        pressureSpinPosition = savedInstanceState
-                .getInt("pressureSpinPosition");
-        duration = savedInstanceState.getDouble("duration");
-        viscosity = savedInstanceState.getDouble("viscosity");
-        concentration = savedInstanceState.getDouble("concentration");
-        concentrationSpinPosition = savedInstanceState
-                .getInt("concentrationSpinPosition");
-        molecularWeight = savedInstanceState.getDouble("molecularWeight");
+        electroOsmosisTime = savedInstanceState.getDouble("electroOsmosisTime");
+        electroOsmosisTimeSpinPosition = savedInstanceState
+                .getInt("electroOsmosisTimeSpinPosition");
+        voltage = savedInstanceState.getDouble("voltage");
+        for (int i = 0; i < timePeakNumber; i++) {
+            String key_name = String.format("timePeak%d", i);
+            timePeaks[i] = savedInstanceState.getDouble(key_name);
+        }
 
         /* Set GlobalState values */
         setGlobalStateValues();
@@ -156,15 +148,15 @@ public class MobilityActivity extends Activity implements
         capillaryLength = CEToolboxActivity.fragmentData.getCapillaryLength();
         toWindowLength = CEToolboxActivity.fragmentData.getToWindowLength();
         diameter = CEToolboxActivity.fragmentData.getDiameter();
-        pressure = CEToolboxActivity.fragmentData.getPressure();
-        pressureSpinPosition = CEToolboxActivity.fragmentData
-                .getPressureSpinPosition();
-        duration = CEToolboxActivity.fragmentData.getDuration();
-        viscosity = CEToolboxActivity.fragmentData.getViscosity();
-        concentration = CEToolboxActivity.fragmentData.getConcentration();
-        concentrationSpinPosition = CEToolboxActivity.fragmentData
-                .getConcentrationSpinPosition();
-        molecularWeight = CEToolboxActivity.fragmentData.getMolecularWeight();
+        voltage = CEToolboxActivity.fragmentData.getVoltage();
+        electroOsmosisTime = CEToolboxActivity.fragmentData
+                .getElectroOsmosisTime();
+        electroOsmosisTimeSpinPosition = CEToolboxActivity.fragmentData
+                .getElectroOsmosisTimeSpinPosition();
+        timePeaks = CEToolboxActivity.fragmentData.getTimePeaks();
+        if (timePeaks == null) {
+            timePeaks = new Double[timePeakNumber];
+        }
     }
 
     private void setGlobalStateValues() {
@@ -172,28 +164,27 @@ public class MobilityActivity extends Activity implements
         CEToolboxActivity.fragmentData.setCapillaryLength(capillaryLength);
         CEToolboxActivity.fragmentData.setToWindowLength(toWindowLength);
         CEToolboxActivity.fragmentData.setDiameter(diameter);
-        CEToolboxActivity.fragmentData.setPressure(pressure);
+        CEToolboxActivity.fragmentData.setVoltage(voltage);
         CEToolboxActivity.fragmentData
-                .setPressureSpinPosition(pressureSpinPosition);
-        CEToolboxActivity.fragmentData.setDuration(duration);
-        CEToolboxActivity.fragmentData.setViscosity(viscosity);
-        CEToolboxActivity.fragmentData.setConcentration(concentration);
+                .setElectroOsmosisTime(electroOsmosisTime);
         CEToolboxActivity.fragmentData
-                .setConcentrationSpinPosition(concentrationSpinPosition);
-        CEToolboxActivity.fragmentData.setMolecularWeight(molecularWeight);
+                .setElectroOsmosisTimeSpinPosition(electroOsmosisTimeSpinPosition);
+        CEToolboxActivity.fragmentData.setTimePeaks(timePeaks);
     }
 
     private void editTextInitialize() {
         capillaryLengthValue.setText(capillaryLength.toString());
         diameterValue.setText(diameter.toString());
         toWindowLengthValue.setText(toWindowLength.toString());
-        pressureValue.setText(pressure.toString());
-        pressureSpin.setSelection(pressureSpinPosition);
-        durationValue.setText(duration.toString());
-        viscosityValue.setText(viscosity.toString());
-        concentrationValue.setText(concentration.toString());
-        concentrationSpin.setSelection(concentrationSpinPosition);
-        molecularWeightValue.setText(molecularWeight.toString());
+        voltageValue.setText(voltage.toString());
+        electroOsmosisTimeValue.setText(electroOsmosisTime.toString());
+        electroOsmosisTimeSpin.setSelection(electroOsmosisTimeSpinPosition);
+
+        for (int i = 0; i < timePeakNumber; i++) {
+            /* timePeakValues[i].setText(timePeaks[i].toString()); */
+            Double value = 0.0;
+            timePeakValues[i].setText("0");
+        }
     }
 
     /*
@@ -209,16 +200,10 @@ public class MobilityActivity extends Activity implements
             errorMessage = "The length to window field is empty.";
         } else if (diameterValue.getText().length() == 0) {
             errorMessage = "The diameter field is empty.";
-        } else if (pressureValue.getText().length() == 0) {
-            errorMessage = "The pressure field is empty.";
-        } else if (durationValue.getText().length() == 0) {
-            errorMessage = "The duration field is empty.";
-        } else if (viscosityValue.getText().length() == 0) {
-            errorMessage = "The viscosity field is empty.";
-        } else if (concentrationValue.getText().length() == 0) {
-            errorMessage = "The concentration field is empty.";
-        } else if (molecularWeightValue.getText().length() == 0) {
-            errorMessage = "The molecular weight field is empty.";
+        } else if (voltageValue.getText().length() == 0) {
+            errorMessage = "The voltage field is empty.";
+        } else if (electroOsmosisTimeValue.getText().length() == 0) {
+            errorMessage = "The electro-osmosis time field is empty.";
         }
 
         if (errorMessage.length() == 0) {
@@ -228,17 +213,11 @@ public class MobilityActivity extends Activity implements
                 errorMessage = "The length to window can not be null.";
             } else if (Double.valueOf(diameterValue.getText().toString()) == 0) {
                 errorMessage = "The diameter can not be null.";
-            } else if (Double.valueOf(pressureValue.getText().toString()) == 0) {
-                errorMessage = "The pressure can not be null.";
-            } else if (Double.valueOf(durationValue.getText().toString()) == 0) {
-                errorMessage = "The duration can not be null.";
-            } else if (Double.valueOf(viscosityValue.getText().toString()) == 0) {
-                errorMessage = "The viscoty can not be null.";
-            } else if (Double.valueOf(concentrationValue.getText().toString()) == 0) {
-                errorMessage = "The concentration can not be null.";
-            } else if (Double
-                    .valueOf(molecularWeightValue.getText().toString()) == 0) {
-                errorMessage = "The molecular weight can not be null.";
+            } else if (Double.valueOf(voltageValue.getText().toString()) == 0) {
+                errorMessage = "The voltage can not be null.";
+            } else if (Double.valueOf(electroOsmosisTimeValue.getText()
+                    .toString()) == 0) {
+                errorMessage = "The electro-osmosis time can not be null.";
             }
         }
 
@@ -248,9 +227,7 @@ public class MobilityActivity extends Activity implements
     @Override
     public void onClick(View view) {
         if (view == calculate) {
-            boolean isFull = false;
             boolean validatedValues = false;
-            Double pressureMBar = 0.0;
             String errorMessage;
 
             errorMessage = parseEditTextContent();
@@ -260,22 +237,20 @@ public class MobilityActivity extends Activity implements
             if (validatedValues) {
                 /* Parameter validation */
                 diameter = Double.valueOf(diameterValue.getText().toString());
-                duration = Double.valueOf(durationValue.getText().toString());
-                viscosity = Double.valueOf(viscosityValue.getText().toString());
+
                 capillaryLength = Double.valueOf(capillaryLengthValue.getText()
                         .toString());
-                pressure = Double.valueOf(pressureValue.getText().toString());
-                if (pressureUnit.compareTo("psi") == 0) {
-                    pressureMBar = pressure * 6894.8 / 100;
-                } else {
-                    pressureMBar = pressure;
-                }
                 toWindowLength = Double.valueOf(toWindowLengthValue.getText()
                         .toString());
-                concentration = Double.valueOf(concentrationValue.getText()
-                        .toString());
-                molecularWeight = Double.valueOf(molecularWeightValue.getText()
-                        .toString());
+                voltage = Double.valueOf(voltageValue.getText().toString());
+                electroOsmosisTime = Double.valueOf(electroOsmosisTimeValue
+                        .getText().toString());
+                if (timePeaks == null) {
+                    timePeaks = new Double[timePeakNumber];
+                }
+                for (int i = 0; i < timePeakNumber; i++) {
+                    timePeaks[i] = Double.valueOf(timePeakValues[i].getText().toString());
+                }
                 /* Check the values for incoherence */
                 if (toWindowLength > capillaryLength) {
                     validatedValues = false;
@@ -284,7 +259,7 @@ public class MobilityActivity extends Activity implements
             }
             if (validatedValues) {
                 /* If all is fine, save the data and compute */
-                SharedPreferences.Editor editor =  CEToolboxActivity.preferences
+                SharedPreferences.Editor editor = CEToolboxActivity.preferences
                         .edit();
 
                 editor.putLong("capillaryLength",
@@ -292,43 +267,35 @@ public class MobilityActivity extends Activity implements
                 editor.putLong("toWindowLength",
                         Double.doubleToLongBits(toWindowLength));
                 editor.putLong("diameter", Double.doubleToLongBits(diameter));
-                editor.putLong("pressure", Double.doubleToLongBits(pressure));
-                editor.putInt("pressureSpinPosition", pressureSpinPosition);
-                editor.putLong("duration", Double.doubleToLongBits(duration));
-                editor.putLong("viscosity", Double.doubleToLongBits(viscosity));
-                editor.putLong("concentration",
-                        Double.doubleToLongBits(concentration));
-                editor.putInt("concentrationSpinPosition",
-                        concentrationSpinPosition);
-                editor.putLong("molecularWeight",
-                        Double.doubleToLongBits(molecularWeight));
+                editor.putLong("voltage", Double.doubleToLongBits(voltage));
+                editor.putLong("electroOsmosisTime",
+                        Double.doubleToLongBits(electroOsmosisTime));
+                editor.putInt("electroOsmosisTimeSpinPosition",
+                        electroOsmosisTimeSpinPosition);
+                for (int i = 0; i < timePeakNumber; i++) {
+                    String key_name = String.format("timePeak%d", i);
+                    editor.putLong(key_name, Double.doubleToLongBits(timePeaks[i]));
+                }
 
                 editor.apply();
 
-                capillary = new CapillaryElectrophoresis(pressureMBar,
-                        diameter, duration, viscosity, capillaryLength,
-                        toWindowLength, concentration, molecularWeight);
+                capillary = new CapillaryElectrophoresis();
+                capillary.setTotalLength(capillaryLength);
+                capillary.setToWindowLength(toWindowLength);
+                capillary.setDiameter(diameter);
+                capillary.setVoltage(voltage);
+                Double electroOsmosisTimeSecond;
+                if (electroOsmosisTimeUnit.compareTo("min") == 0) {
+                    electroOsmosisTimeSecond = electroOsmosisTime * 60;
+                } else {
+                    electroOsmosisTimeSecond = electroOsmosisTime;
+                }
+                capillary.setElectroOsmosisTime(electroOsmosisTimeSecond);
 
                 DecimalFormat doubleDecimalFormat = new DecimalFormat("#.##");
-                Double deliveredVolume = capillary.getDeliveredVolume(); /* nl */
-                Double capillaryVolume = capillary.getCapillaryVolume(); /* nl */
-                if (deliveredVolume > capillaryVolume) {
-                    deliveredVolume = capillaryVolume;
-                    isFull = true;
-                }
 
-                /* Compute injected quantity of analyte */
-                Double analyteMass; /* ng */
-                Double analyteMol; /* mmol */
-                if (concentrationUnit.compareTo("g/L") == 0) {
-                    analyteMass = deliveredVolume * concentration;
-                    analyteMol = analyteMass / molecularWeight * 1000;
-                } else {
-                    analyteMol = deliveredVolume * concentration;
-                    analyteMass = analyteMol * molecularWeight / 1000;
-                }
-
-                Double plugLength = deliveredVolume / capillaryVolume * 100;
+                /* Compute the microEOF and all effective mobilities */
+                Double microEOF = capillary.getMicroEOF() * 1000; /* E-3 cm2/V/s */
 
                 /* Build the result window */
                 LayoutInflater li = LayoutInflater.from(this);
@@ -340,39 +307,40 @@ public class MobilityActivity extends Activity implements
                 builder.setView(mobilityDetailsView);
 
                 TextView title = new TextView(this);
-                title.setText("Injection Details");
+                title.setText("Mobility Details");
                 title.setTextSize(20);
                 title.setBackgroundColor(Color.DKGRAY);
                 title.setTextColor(Color.WHITE);
                 title.setPadding(10, 10, 10, 10);
                 title.setGravity(Gravity.CENTER);
                 builder.setCustomTitle(title);
-
-                TextView tvHydrodynamicInjection = (TextView) mobilityDetailsView
-                        .findViewById(R.id.hydrodynamicInjectionValue);
-                tvHydrodynamicInjection.setText(doubleDecimalFormat
-                        .format(deliveredVolume) + " nl");
-                TextView tvCapillaryVolume = (TextView) mobilityDetailsView
-                        .findViewById(R.id.capillaryVolumeValue);
-                tvCapillaryVolume.setText(doubleDecimalFormat
-                        .format(capillaryVolume) + " nl");
-                TextView tvPlugLength = (TextView) mobilityDetailsView
-                        .findViewById(R.id.plugLengthValue);
-                tvPlugLength.setText(doubleDecimalFormat.format(plugLength));
-                TextView tvInjectedAnalyte = (TextView) mobilityDetailsView
-                        .findViewById(R.id.injectedAnalyteValue);
-                tvInjectedAnalyte.setText(doubleDecimalFormat
-                        .format(analyteMass)
-                        + " ng\n"
-                        + doubleDecimalFormat.format(analyteMol) + " pmol");
-
-                if (isFull) {
-                    TextView tvMessage = (TextView) mobilityDetailsView
-                            .findViewById(R.id.mobilityMessage);
-                    tvMessage.setTextColor(Color.RED);
-                    tvMessage.setTypeface(null, Typeface.BOLD);
-                    tvMessage.setText("Warning: the capillary is full !");
+                TextView tvMicroEOF = (TextView) mobilityDetailsView
+                        .findViewById(R.id.microEOFValue);
+                tvMicroEOF.setText(doubleDecimalFormat.format(microEOF)
+                        + "E-03 cm2/V/s");
+                boolean endOfPeaks = false;
+                TextView[] tvMicroEFF = new TextView[timePeakNumber];
+                String microeff_name;
+                Double microEFF;
+                for (int i = 0; i < timePeakNumber; i++) {
+                    microeff_name = String.format("microEFF%dValue", i + 1);
+                    int resID = getResources().getIdentifier(microeff_name,
+                            "id", getPackageName());
+                    if (timePeaks[i] == 0) {
+                        endOfPeaks = true;
+                    }
+                    timePeakValues[i] = (EditText) findViewById(resID);
+                    tvMicroEFF[i] = mobilityDetailsView.findViewById(resID);
+                    if (!endOfPeaks) {
+                        microEFF = capillary.getMicroEFF(timePeaks[i]*60) - microEOF;
+                        /* Display the value of mobility for this peak */
+                        tvMicroEFF[i].setText(microEFF.toString() + " cm2/V/s");
+                    } else {
+                        tvMicroEFF[i].setText("-");
+                        /* Hide the value for this peak */
+                    }
                 }
+
                 builder.setNeutralButton("Close",
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -408,36 +376,30 @@ public class MobilityActivity extends Activity implements
             capillaryLength = 100.0;
             toWindowLength = 100.0;
             diameter = 50.0;
-            pressure = 30.0;
-            pressureSpinPosition = 0;
-            duration = 10.0;
-            viscosity = 1.0;
-            concentration = 1.0;
-            concentrationSpinPosition = 0;
-            molecularWeight = 1000.0;
-
+            voltage = 30.0;
+            electroOsmosisTime = 1.0;
+            electroOsmosisTimeSpinPosition = 0;
+            /*timePeaks = new Double[timePeakNumber];*/
+            for (int i = 0; i < timePeakNumber; i++) {
+                timePeaks[i] = 0.0;
+            }
             editTextInitialize();
         }
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position,
-            long id) {
-        if (parent == concentrationSpin) {
-            concentrationUnit = (String) concentrationSpin
+                               long id) {
+        if (parent == electroOsmosisTimeSpin) {
+            electroOsmosisTimeUnit = (String) electroOsmosisTimeSpin
                     .getItemAtPosition(position);
-            concentrationSpinPosition = position;
-        } else if (parent == pressureSpin) {
-            pressureUnit = (String) pressureSpin.getItemAtPosition(position);
-            pressureSpinPosition = position;
+            electroOsmosisTimeSpinPosition = position;
         }
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        /* concentrationSpin.setText(""); */
     }
-
     @Override
     public void onPause() {
         try {
@@ -459,39 +421,20 @@ public class MobilityActivity extends Activity implements
             CEToolboxActivity.fragmentData.setDiameter(diameter);
         }
         try {
-            CEToolboxActivity.fragmentData.setPressure(Double
-                    .valueOf(pressureValue.getText().toString()));
+            CEToolboxActivity.fragmentData.setVoltage(Double
+                    .valueOf(voltageValue.getText().toString()));
         } catch (Exception e) {
-            CEToolboxActivity.fragmentData.setPressure(pressure);
+            CEToolboxActivity.fragmentData.setVoltage(voltage);
+        }
+        try {
+            CEToolboxActivity.fragmentData.setElectroOsmosisTime(Double
+                    .valueOf(electroOsmosisTimeValue.getText().toString()));
+        } catch (Exception e) {
+            CEToolboxActivity.fragmentData
+                    .setElectroOsmosisTime(electroOsmosisTime);
         }
         CEToolboxActivity.fragmentData
-                .setPressureSpinPosition(pressureSpinPosition);
-        try {
-            CEToolboxActivity.fragmentData.setDuration(Double
-                    .valueOf(durationValue.getText().toString()));
-        } catch (Exception e) {
-            CEToolboxActivity.fragmentData.setDuration(duration);
-        }
-        try {
-            CEToolboxActivity.fragmentData.setViscosity(Double
-                    .valueOf(viscosityValue.getText().toString()));
-        } catch (Exception e) {
-            CEToolboxActivity.fragmentData.setViscosity(viscosity);
-        }
-        try {
-            CEToolboxActivity.fragmentData.setConcentration(Double
-                    .valueOf(concentrationValue.getText().toString()));
-        } catch (Exception e) {
-            CEToolboxActivity.fragmentData.setConcentration(concentration);
-        }
-        CEToolboxActivity.fragmentData
-                .setConcentrationSpinPosition(concentrationSpinPosition);
-        try {
-            CEToolboxActivity.fragmentData.setMolecularWeight(Double
-                    .valueOf(molecularWeightValue.getText().toString()));
-        } catch (Exception e) {
-            CEToolboxActivity.fragmentData.setMolecularWeight(molecularWeight);
-        }
+                .setElectroOsmosisTimeSpinPosition(electroOsmosisTimeSpinPosition);
 
         super.onPause();
     }
@@ -517,37 +460,19 @@ public class MobilityActivity extends Activity implements
             state.putDouble("diameter", diameter);
         }
         try {
-            state.putDouble("pressure",
-                    Double.valueOf(pressureValue.getText().toString()));
+            state.putDouble("voltage",
+                    Double.valueOf(voltageValue.getText().toString()));
         } catch (Exception e) {
-            state.putDouble("pressure", pressure);
-        }
-        state.putInt("pressureSpinPosition", pressureSpinPosition);
-        try {
-            state.putDouble("duration",
-                    Double.valueOf(durationValue.getText().toString()));
-        } catch (Exception e) {
-            state.putDouble("duration", duration);
+            state.putDouble("voltage", voltage);
         }
         try {
-            state.putDouble("viscosity",
-                    Double.valueOf(viscosityValue.getText().toString()));
+            state.putDouble("electroOsmosisTime", Double
+                    .valueOf(electroOsmosisTimeValue.getText().toString()));
         } catch (Exception e) {
-            state.putDouble("viscosity", viscosity);
+            state.putDouble("electroOsmosisTime", electroOsmosisTime);
         }
-        try {
-            state.putDouble("concentration",
-                    Double.valueOf(concentrationValue.getText().toString()));
-        } catch (Exception e) {
-            state.putDouble("concentration", concentration);
-        }
-        state.putInt("concentrationSpinPosition", concentrationSpinPosition);
-        try {
-            state.putDouble("molecularWeight",
-                    Double.valueOf(molecularWeightValue.getText().toString()));
-        } catch (Exception e) {
-            state.putDouble("molecularWeight", molecularWeight);
-        }
+        state.putInt("electroOsmosisTimeSpinPosition",
+                electroOsmosisTimeSpinPosition);
 
         super.onSaveInstanceState(state);
     }

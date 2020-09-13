@@ -28,6 +28,7 @@ public class GlobalState {
 	private Double detectionTime;
 	private Double electricCurrent;
 	private Double electroOsmosisTime;
+	private Double[] timePeaks;
 	private int concentrationSpinPosition;
 	private int pressureSpinPosition;
 	private int detectionTimeSpinPosition;
@@ -162,4 +163,11 @@ public class GlobalState {
 		return electroOsmosisTimeSpinPosition;
 	}
 
+	public void setTimePeaks(Double[] timePeaks) {
+		this.timePeaks = timePeaks;
+	}
+
+    public Double[] getTimePeaks() {
+		return timePeaks;
+    }
 }

@@ -199,6 +199,13 @@ public class CapillaryElectrophoresis {
 		return microEOF;
 	}
 
+	public double getMicroEFF(double peakTime) {
+		double microEFF;
+		microEFF = (totalLength * toWindowLength)
+				/ (peakTime * voltage);
+		return microEFF;
+	}
+
 	public double getLengthPerMinute() {
 		double lengthPerMinute;
 		lengthPerMinute = (60 * getMicroEOF() * getFieldStrength() * Math.pow(
