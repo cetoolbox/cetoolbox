@@ -47,8 +47,8 @@ public class FlowrateActivity extends Activity implements
 	EditText capillaryLengthValue;
 	EditText toWindowLengthValue;
 	EditText diameterValue;
-	EditText electroOsmosisTimeValue;
 	EditText voltageValue;
+	EditText electroOsmosisTimeValue;
 	Spinner electroOsmosisTimeSpin;
 	int electroOsmosisTimeSpinPosition;
 
