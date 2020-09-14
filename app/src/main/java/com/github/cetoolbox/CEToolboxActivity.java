@@ -15,13 +15,14 @@
  */
 package com.github.cetoolbox;
 
-import android.os.Bundle;
 import android.app.TabActivity;
-import android.widget.TabHost;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.widget.TabHost;
+
 import com.github.cetoolbox.fragments.tabs.AboutActivity;
 import com.github.cetoolbox.fragments.tabs.ConductivityActivity;
 import com.github.cetoolbox.fragments.tabs.FlowrateActivity;
@@ -34,6 +35,7 @@ public class CEToolboxActivity extends TabActivity {
 	static public GlobalState fragmentData;
 	public static final String PREFS_NAME = "capillary.electrophoresis.toolbox.PREFERENCE_FILE_KEY";
 	static public SharedPreferences preferences;
+	public static final int timePeakCount = 20;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
