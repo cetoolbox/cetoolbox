@@ -43,7 +43,6 @@ import java.util.Locale;
 
 public class MobilityActivity extends Activity implements
         AdapterView.OnItemSelectedListener, View.OnClickListener {
-    static final int timePeakNumber = 20;
     Button calculate;
     Button reset;
     EditText capillaryLengthValue;
@@ -53,7 +52,7 @@ public class MobilityActivity extends Activity implements
     EditText electroOsmosisTimeValue;
     Spinner electroOsmosisTimeSpin;
     int electroOsmosisTimeSpinPosition;
-    EditText[] timePeakValues = new EditText[timePeakNumber];
+    EditText[] timePeakValues = new EditText[CEToolboxActivity.timePeakCount];
 
     CapillaryElectrophoresis capillary;
 
@@ -63,7 +62,7 @@ public class MobilityActivity extends Activity implements
     Double voltage;
     Double electroOsmosisTime;
     String electroOsmosisTimeUnit;
-    Double[] timePeaks = new Double[timePeakNumber];
+    Double[] timePeaks = new Double[CEToolboxActivity.timePeakCount];
 
     /**
      * Called when the activity is first created.
@@ -95,10 +94,9 @@ public class MobilityActivity extends Activity implements
         electroOsmosisTimeSpin.setAdapter(electroOsmosisTimeUnitsAdapter);
         voltageValue = findViewById(R.id.voltageValue);
 
-        /*timePeakValues = new EditText[timePeakNumber];*/
-
-        for (int i = 0; i < timePeakNumber; i++) {
-            String peak_name = String.format("timePeakValue%d", i);
+        String peak_name;
+        for (int i = 0; i < CEToolboxActivity.timePeakCount; i++) {
+            peak_name = String.format("timePeakValue%d", i);
             int resID = getResources().getIdentifier(peak_name,
                     "id", getPackageName());
             timePeakValues[i] = findViewById(resID);
@@ -123,8 +121,9 @@ public class MobilityActivity extends Activity implements
         electroOsmosisTimeSpinPosition = savedInstanceState
                 .getInt("electroOsmosisTimeSpinPosition");
         voltage = savedInstanceState.getDouble("voltage");
-        for (int i = 0; i < timePeakNumber; i++) {
-            String key_name = String.format("timePeak%d", i);
+        String key_name;
+        for (int i = 0; i < CEToolboxActivity.timePeakCount; i++) {
+            key_name = String.format("timePeak%d", i);
             timePeaks[i] = savedInstanceState.getDouble(key_name);
         }
 
@@ -154,9 +153,6 @@ public class MobilityActivity extends Activity implements
         electroOsmosisTimeSpinPosition = CEToolboxActivity.fragmentData
                 .getElectroOsmosisTimeSpinPosition();
         timePeaks = CEToolboxActivity.fragmentData.getTimePeaks();
-        if (timePeaks == null) {
-            timePeaks = new Double[timePeakNumber];
-        }
     }
 
     private void setGlobalStateValues() {
@@ -179,11 +175,8 @@ public class MobilityActivity extends Activity implements
         voltageValue.setText(voltage.toString());
         electroOsmosisTimeValue.setText(electroOsmosisTime.toString());
         electroOsmosisTimeSpin.setSelection(electroOsmosisTimeSpinPosition);
-
-        for (int i = 0; i < timePeakNumber; i++) {
-            /* timePeakValues[i].setText(timePeaks[i].toString()); */
-            Double value = 0.0;
-            timePeakValues[i].setText("0");
+        for (int i = 0; i < CEToolboxActivity.timePeakCount; i++) {
+            timePeakValues[i].setText(timePeaks[i].toString());
         }
     }
 
@@ -245,10 +238,7 @@ public class MobilityActivity extends Activity implements
                 voltage = Double.valueOf(voltageValue.getText().toString());
                 electroOsmosisTime = Double.valueOf(electroOsmosisTimeValue
                         .getText().toString());
-                if (timePeaks == null) {
-                    timePeaks = new Double[timePeakNumber];
-                }
-                for (int i = 0; i < timePeakNumber; i++) {
+                for (int i = 0; i < CEToolboxActivity.timePeakCount; i++) {
                     timePeaks[i] = Double.valueOf(timePeakValues[i].getText().toString());
                 }
                 /* Check the values for incoherence */
@@ -272,8 +262,9 @@ public class MobilityActivity extends Activity implements
                         Double.doubleToLongBits(electroOsmosisTime));
                 editor.putInt("electroOsmosisTimeSpinPosition",
                         electroOsmosisTimeSpinPosition);
-                for (int i = 0; i < timePeakNumber; i++) {
-                    String key_name = String.format("timePeak%d", i);
+                String key_name;
+                for (int i = 0; i < CEToolboxActivity.timePeakCount; i++) {
+                    key_name = String.format("timePeak%d", i);
                     editor.putLong(key_name, Double.doubleToLongBits(timePeaks[i]));
                 }
 
@@ -319,22 +310,21 @@ public class MobilityActivity extends Activity implements
                 tvMicroEOF.setText(doubleDecimalFormat.format(microEOF)
                         + "E-03 cm2/V/s");
                 boolean endOfPeaks = false;
-                TextView[] tvMicroEFF = new TextView[timePeakNumber];
+                TextView[] tvMicroEFF = new TextView[CEToolboxActivity.timePeakCount];
                 String microeff_name;
                 Double microEFF;
-                for (int i = 0; i < timePeakNumber; i++) {
+                for (int i = 0; i < CEToolboxActivity.timePeakCount; i++) {
                     microeff_name = String.format("microEFF%dValue", i + 1);
                     int resID = getResources().getIdentifier(microeff_name,
                             "id", getPackageName());
+                    tvMicroEFF[i] = mobilityDetailsView.findViewById(resID);
                     if (timePeaks[i] == 0) {
                         endOfPeaks = true;
                     }
-                    timePeakValues[i] = (EditText) findViewById(resID);
-                    tvMicroEFF[i] = mobilityDetailsView.findViewById(resID);
                     if (!endOfPeaks) {
-                        microEFF = capillary.getMicroEFF(timePeaks[i]*60) - microEOF;
+                        microEFF = capillary.getMicroEFF(timePeaks[i] * 60) * 1000 - microEOF;
                         /* Display the value of mobility for this peak */
-                        tvMicroEFF[i].setText(microEFF.toString() + " cm2/V/s");
+                        tvMicroEFF[i].setText(doubleDecimalFormat.format(microEFF) + "E-03 cm2/V/s");
                     } else {
                         tvMicroEFF[i].setText("-");
                         /* Hide the value for this peak */
@@ -379,8 +369,7 @@ public class MobilityActivity extends Activity implements
             voltage = 30.0;
             electroOsmosisTime = 1.0;
             electroOsmosisTimeSpinPosition = 0;
-            /*timePeaks = new Double[timePeakNumber];*/
-            for (int i = 0; i < timePeakNumber; i++) {
+            for (int i = 0; i < CEToolboxActivity.timePeakCount; i++) {
                 timePeaks[i] = 0.0;
             }
             editTextInitialize();

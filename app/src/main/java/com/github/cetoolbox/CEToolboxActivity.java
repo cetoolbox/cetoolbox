@@ -139,6 +139,13 @@ public class CEToolboxActivity extends TabActivity {
 				"detectionTimeSpinPosition", 0));
 		fragmentData.setElectroOsmosisTimeSpinPosition(preferences.getInt(
 				"electroOsmosisTimeSpinPosition", 0));
+		String key_name;
+		for (int i = 0; i < timePeakCount; i++) {
+			key_name = String.format("timePeak%d", i);
+			fragmentData.setTimePeak(i, Double.longBitsToDouble(preferences.getLong(key_name, 0)));
+			;
+		}
+
 
 	}
 }

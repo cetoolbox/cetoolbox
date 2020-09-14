@@ -28,7 +28,7 @@ public class GlobalState {
 	private Double detectionTime;
 	private Double electricCurrent;
 	private Double electroOsmosisTime;
-	private Double[] timePeaks;
+	private Double[] timePeaks = new Double[CEToolboxActivity.timePeakCount];
 	private int concentrationSpinPosition;
 	private int pressureSpinPosition;
 	private int detectionTimeSpinPosition;
@@ -167,7 +167,11 @@ public class GlobalState {
 		this.timePeaks = timePeaks;
 	}
 
-    public Double[] getTimePeaks() {
+	public void setTimePeak(int index, Double timePeak) {
+		this.timePeaks[index] = timePeak;
+	}
+
+	public Double[] getTimePeaks() {
 		return timePeaks;
-    }
+	}
 }
