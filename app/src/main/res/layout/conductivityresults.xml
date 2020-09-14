@@ -20,12 +20,10 @@
     android:padding="5dp">
 
     <TableRow
-        android:id="@+id/tableRow1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/conductivityLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,12 +37,10 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow2"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/conductivityMessage"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

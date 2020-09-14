@@ -1,4 +1,4 @@
-/*******************************************************************************
+/*
  * Copyright (C) 2012-2014 CNRS and University of Strasbourg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,12 +12,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- ******************************************************************************/
+ */
 package com.github.cetoolbox;
 
 /**
- * This class contains several functions for volume computation
- * 
+ * This class contains functions related to Capillary Electrophoresis computations
+ *
  * @author Jerome Pansanel
  */
 
@@ -197,6 +197,13 @@ public class CapillaryElectrophoresis {
 		microEOF = (totalLength * toWindowLength)
 				/ (electroOsmosisTime * voltage);
 		return microEOF;
+	}
+
+	public double getMicroEFF(double peakTime) {
+		double microEFF;
+		microEFF = (totalLength * toWindowLength)
+				/ (peakTime * voltage);
+		return microEFF;
 	}
 
 	public double getLengthPerMinute() {

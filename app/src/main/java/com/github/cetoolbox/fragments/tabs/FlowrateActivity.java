@@ -1,4 +1,4 @@
-/*******************************************************************************
+/*
  * Copyright (C) 2012-2014 CNRS and University of Strasbourg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- ******************************************************************************/
+ */
 package com.github.cetoolbox.fragments.tabs;
 
 import android.app.Activity;
@@ -33,10 +33,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import java.text.DecimalFormat;
 import java.util.Locale;
-
 import com.github.cetoolbox.CEToolboxActivity;
 import com.github.cetoolbox.CapillaryElectrophoresis;
 import com.github.cetoolbox.R;
@@ -44,16 +42,13 @@ import com.github.cetoolbox.R;
 public class FlowrateActivity extends Activity implements
 		AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-	public static final String PREFS_NAME = "capillary.electrophoresis.toolbox.PREFERENCE_FILE_KEY";
-
 	Button calculate;
 	Button reset;
 	EditText capillaryLengthValue;
 	EditText toWindowLengthValue;
 	EditText diameterValue;
-	EditText electroOsmosisTimeValue;
 	EditText voltageValue;
-	TextView tvElectroOsmosisTimeUnits;
+	EditText electroOsmosisTimeValue;
 	Spinner electroOsmosisTimeSpin;
 	int electroOsmosisTimeSpinPosition;
 
@@ -228,9 +223,8 @@ public class FlowrateActivity extends Activity implements
 			}
 			if (validatedValues) {
 				/* If all is fine, save the data and compute */
-				SharedPreferences preferences = getSharedPreferences(
-						PREFS_NAME, 0);
-				SharedPreferences.Editor editor = preferences.edit();
+				SharedPreferences.Editor editor =  CEToolboxActivity.preferences
+						.edit();
 
 				editor.putLong("capillaryLength",
 						Double.doubleToLongBits(capillaryLength));
@@ -243,14 +237,14 @@ public class FlowrateActivity extends Activity implements
 				editor.putInt("electroOsmosisTimeSpinPosition",
 						electroOsmosisTimeSpinPosition);
 
-				editor.commit();
+				editor.apply();
 
 				capillary = new CapillaryElectrophoresis();
 				capillary.setTotalLength(capillaryLength);
 				capillary.setToWindowLength(toWindowLength);
 				capillary.setDiameter(diameter);
 				capillary.setVoltage(voltage);
-				Double electroOsmosisTimeSecond = 0.0;
+				Double electroOsmosisTimeSecond;
 				if (electroOsmosisTimeUnit.compareTo("min") == 0) {
 					electroOsmosisTimeSecond = electroOsmosisTime * 60;
 				} else {

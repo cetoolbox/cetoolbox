@@ -20,12 +20,10 @@
     android:padding="5dp">
 
     <TableRow
-        android:id="@+id/tableRow1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/fieldStrengthLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,12 +37,10 @@
     </TableRow>
 
         <TableRow
-        android:id="@+id/tableRow2"
-        android:layout_width="wrap_content"
+            android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/microEOFLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -58,12 +54,10 @@
     </TableRow>
     
     <TableRow
-        android:id="@+id/tableRow3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/lengthPerMinuteLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -77,12 +71,10 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/flowRateLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -96,12 +88,10 @@
     </TableRow>
 
     <TableRow
-        android:id="@+id/tableRow5"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/flowRateMessage"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

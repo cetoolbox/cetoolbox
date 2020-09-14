@@ -37,6 +37,8 @@
         </activity>
         <activity android:name=".fragments.tabs.InjectionActivity" >
         </activity>
+        <activity android:name=".fragments.tabs.MobilityActivity" >
+        </activity>
         <activity android:name=".fragments.tabs.ViscosityActivity" >
         </activity>
     </application>

@@ -15,28 +15,27 @@
  */
 package com.github.cetoolbox;
 
+import android.app.TabActivity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.widget.TabHost;
+
 import com.github.cetoolbox.fragments.tabs.AboutActivity;
 import com.github.cetoolbox.fragments.tabs.ConductivityActivity;
 import com.github.cetoolbox.fragments.tabs.FlowrateActivity;
 import com.github.cetoolbox.fragments.tabs.InjectionActivity;
 import com.github.cetoolbox.fragments.tabs.MobilityActivity;
 import com.github.cetoolbox.fragments.tabs.ViscosityActivity;
-import com.github.cetoolbox.GlobalState;
-
-import android.os.Bundle;
-import android.app.TabActivity;
-
-import android.widget.TabHost;
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.content.SharedPreferences;
 
 public class CEToolboxActivity extends TabActivity {
 
 	static public GlobalState fragmentData;
 	public static final String PREFS_NAME = "capillary.electrophoresis.toolbox.PREFERENCE_FILE_KEY";
 	static public SharedPreferences preferences;
+	public static final int timePeakCount = 20;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -69,18 +68,16 @@ public class CEToolboxActivity extends TabActivity {
 			tabHost.addTab(spec);
 
 			intent = new Intent(this.getBaseContext(), FlowrateActivity.class);
-			spec = tabHost.newTabSpec("flowate");
+			spec = tabHost.newTabSpec("flowrate");
 			spec.setContent(intent);
 			spec.setIndicator("Flowrate",
 					res.getDrawable(R.drawable.ic_action_flowrate));
 			tabHost.addTab(spec);
 
-			/*
-			 * intent = new Intent(this.getBaseContext(),
-			 * MobilityActivity.class); spec = tabHost.newTabSpec("mobility");
-			 * spec.setContent(intent); spec.setIndicator("Mobility");
-			 * tabHost.addTab(spec);
-			 */
+			intent = new Intent(this.getBaseContext(),
+			MobilityActivity.class); spec = tabHost.newTabSpec("mobility");
+			spec.setContent(intent); spec.setIndicator("Mobility");
+			tabHost.addTab(spec);
 
 			intent = new Intent(this.getBaseContext(), ViscosityActivity.class);
 			spec = tabHost.newTabSpec("viscosity");
@@ -142,6 +139,13 @@ public class CEToolboxActivity extends TabActivity {
 				"detectionTimeSpinPosition", 0));
 		fragmentData.setElectroOsmosisTimeSpinPosition(preferences.getInt(
 				"electroOsmosisTimeSpinPosition", 0));
+		String key_name;
+		for (int i = 0; i < timePeakCount; i++) {
+			key_name = String.format("timePeak%d", i);
+			fragmentData.setTimePeak(i, Double.longBitsToDouble(preferences.getLong(key_name, 0)));
+			;
+		}
+
 
 	}
 }

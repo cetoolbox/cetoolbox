@@ -15,6 +15,7 @@
   limitations under the License.
 -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_weight="1" >
@@ -24,15 +25,14 @@
         android:layout_height="wrap_content" >
 
         <TableRow
-            android:id="@+id/capillaryLengthRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/capillaryLengthLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/capillaryLengthValue"
                 android:text="@string/CapillaryLength" >
 
                 <requestFocus />
@@ -46,7 +46,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/capillaryLengthUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -54,15 +53,14 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/toWindowLengthRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/toWindowLengthLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/toWindowLengthValue"
                 android:text="@string/toWindowLength" />
 
             <EditText
@@ -73,7 +71,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/toWindowLengthUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -81,15 +78,14 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/diameterRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/diameterLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/diameterValue"
                 android:text="@string/InsideDiameter" />
 
             <EditText
@@ -100,7 +96,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/insideDiameterUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -108,15 +103,14 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/electroOsmosisTimeRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/electroOsmosisTimeLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/electroOsmosisTimeValue"
                 android:text="@string/ElectroOsmosisTime" />
 
             <EditText
@@ -135,15 +129,14 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/voltageRow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/voltageLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:labelFor="@id/voltageValue"
                 android:text="@string/Voltage" />
 
             <EditText
@@ -154,7 +147,6 @@
                 android:inputType="numberDecimal" />
 
             <TextView
-                android:id="@+id/voltageUnitLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -162,7 +154,6 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/buttonRow"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
@@ -171,13 +162,16 @@
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/Calculate" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Reset" />
+                style="?android:attr/borderlessButtonStyle"
+                android:text="@string/Reset"
+                tools:ignore="ButtonStyle" />
         </TableRow>
     </TableLayout>
 
