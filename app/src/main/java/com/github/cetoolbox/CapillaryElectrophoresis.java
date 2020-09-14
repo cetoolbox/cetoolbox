@@ -16,8 +16,8 @@
 package com.github.cetoolbox;
 
 /**
- * This class contains several functions for volume computation
- * 
+ * This class contains functions related to Capillary Electrophoresis computations
+ *
  * @author Jerome Pansanel
  */
 
