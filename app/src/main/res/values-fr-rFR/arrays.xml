@@ -31,6 +31,7 @@
     <string-array name="electroOsmosisTimeUnitArray">
         <item>min</item>
         <item>s</item>
+        <item>∞</item>
     </string-array>
 
 </resources>
