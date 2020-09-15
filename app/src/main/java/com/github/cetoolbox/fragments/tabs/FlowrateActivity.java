@@ -255,7 +255,10 @@ public class FlowrateActivity extends Activity implements
 				DecimalFormat doubleDecimalFormat = new DecimalFormat("#.##");
 
 				Double fieldStrength = capillary.getFieldStrength(); /* V/cm */
-				Double microEOF = capillary.getMicroEOF() * 1000; /* E-3 cm2/V/s */
+				Double microEOF = 0.0;
+				if (electroOsmosisTimeSpinPosition < 2) {
+					microEOF = capillary.getMicroEOF() * 1000; /* E-3 cm2/V/s */
+				}
 				Double lengthPerMinute = capillary.getLengthPerMinute(); /* m */
 				Double flowRate = capillary.getFlowRate(); /* nL/min */
 
@@ -345,6 +348,17 @@ public class FlowrateActivity extends Activity implements
 			electroOsmosisTimeUnit = (String) electroOsmosisTimeSpin
 					.getItemAtPosition(position);
 			electroOsmosisTimeSpinPosition = position;
+			if (position == 2) {
+				/* Disable the related editText field */
+				electroOsmosisTimeValue = findViewById(R.id.electroOsmosisTimeValue);
+				electroOsmosisTimeValue.setEnabled(false);
+				electroOsmosisTimeValue.setFocusable(false);
+			} else {
+				electroOsmosisTimeValue = findViewById(R.id.electroOsmosisTimeValue);
+				electroOsmosisTimeValue.setEnabled(true);
+				electroOsmosisTimeValue.setFocusableInTouchMode(true);
+				electroOsmosisTimeValue.setFocusable(true);
+			}
 		}
 	}
 
