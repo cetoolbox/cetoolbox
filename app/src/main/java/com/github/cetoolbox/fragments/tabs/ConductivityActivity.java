@@ -1,4 +1,4 @@
-/*******************************************************************************
+/*
  * Copyright (C) 2012-2014 CNRS and University of Strasbourg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- ******************************************************************************/
+ */
 package com.github.cetoolbox.fragments.tabs;
 
 import android.app.Activity;
@@ -40,8 +40,6 @@ import com.github.cetoolbox.R;
 public class ConductivityActivity extends Activity implements
 		AdapterView.OnItemSelectedListener, View.OnClickListener {
 
-	public static final String PREFS_NAME = "capillary.electrophoresis.toolbox.PREFERENCE_FILE_KEY";
-
 	Button calculate;
 	Button reset;
 	EditText capillaryLengthValue;
@@ -56,7 +54,6 @@ public class ConductivityActivity extends Activity implements
 	Double toWindowLength;
 	Double diameter;
 	Double voltage;
-	String voltageUnit;
 	Double electricCurrent;
 
 	/** Called when the activity is first created. */
@@ -206,9 +203,8 @@ public class ConductivityActivity extends Activity implements
 			}
 			if (validatedValues) {
 				/* If all is fine, save the data and compute */
-				SharedPreferences preferences = getSharedPreferences(
-						PREFS_NAME, 0);
-				SharedPreferences.Editor editor = preferences.edit();
+				SharedPreferences.Editor editor =  CEToolboxActivity.preferences
+						.edit();
 
 				editor.putLong("capillaryLength",
 						Double.doubleToLongBits(capillaryLength));
@@ -219,7 +215,7 @@ public class ConductivityActivity extends Activity implements
 				editor.putLong("electricCurrent",
 						Double.doubleToLongBits(electricCurrent));
 
-				editor.commit();
+				editor.apply();
 
 				capillary = new CapillaryElectrophoresis();
 				capillary.setTotalLength(capillaryLength);
@@ -344,6 +340,9 @@ public class ConductivityActivity extends Activity implements
 
 	@Override
 	public void onSaveInstanceState(Bundle state) {
+		// call the super class onCreate to complete the creation of activity like
+		// the view hierarchy
+
 		try {
 			state.putDouble("capillaryLength",
 					Double.valueOf(capillaryLengthValue.getText().toString()));

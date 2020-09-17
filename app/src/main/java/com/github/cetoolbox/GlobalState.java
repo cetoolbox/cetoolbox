@@ -1,4 +1,4 @@
-/*******************************************************************************
+/*
  * Copyright (C) 2012-2014 CNRS and University of Strasbourg
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- ******************************************************************************/
+ */
 package com.github.cetoolbox;
 
 public class GlobalState {
@@ -28,6 +28,7 @@ public class GlobalState {
 	private Double detectionTime;
 	private Double electricCurrent;
 	private Double electroOsmosisTime;
+	private Double[] timePeaks = new Double[CEToolboxActivity.timePeakCount];
 	private int concentrationSpinPosition;
 	private int pressureSpinPosition;
 	private int detectionTimeSpinPosition;
@@ -162,4 +163,15 @@ public class GlobalState {
 		return electroOsmosisTimeSpinPosition;
 	}
 
+	public void setTimePeaks(Double[] timePeaks) {
+		this.timePeaks = timePeaks;
+	}
+
+	public void setTimePeak(int index, Double timePeak) {
+		this.timePeaks[index] = timePeak;
+	}
+
+	public Double[] getTimePeaks() {
+		return timePeaks;
+	}
 }

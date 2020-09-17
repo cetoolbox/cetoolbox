@@ -15,11 +15,11 @@
  */
 package com.github.cetoolbox.fragments.tabs;
 
-import com.github.cetoolbox.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.widget.TextView;
+import com.github.cetoolbox.R;
 
 public class AboutActivity extends Activity {
 
