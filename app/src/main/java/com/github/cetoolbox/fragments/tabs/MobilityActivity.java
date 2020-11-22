@@ -284,11 +284,12 @@ public class MobilityActivity extends Activity implements
                 capillary.setElectroOsmosisTime(electroOsmosisTimeSecond);
 
                 DecimalFormat doubleDecimalFormat = new DecimalFormat("#.##");
+                DecimalFormat doubleDecimalScientificFormat = new DecimalFormat("#.##E0");
 
-                /* Compute the microEOF and all effective mobilities */
+                /* Compute the microEOF mobility if the electro-osmosis time is not infinite*/
                 Double microEOF = 0.0;
                 if (electroOsmosisTimeSpinPosition < 2) {
-                    microEOF = capillary.getMicroEOF() * 1000; /* E-3 cm2/V/s */
+                    microEOF = capillary.getMicroEOF(); /* E-3 cm2/V/s */
                 }
 
                 /* Build the result window */
@@ -310,8 +311,8 @@ public class MobilityActivity extends Activity implements
                 builder.setCustomTitle(title);
                 TextView tvMicroEOF = (TextView) mobilityDetailsView
                         .findViewById(R.id.microEOFValue);
-                tvMicroEOF.setText(doubleDecimalFormat.format(microEOF)
-                        + "E-03 cm2/V/s");
+                tvMicroEOF.setText(doubleDecimalScientificFormat.format(microEOF)
+                        + " cm2/V/s");
                 boolean endOfPeaks = false;
                 TextView[] tvMicroEFF = new TextView[CEToolboxActivity.timePeakCount];
                 String microeff_name;
@@ -325,9 +326,9 @@ public class MobilityActivity extends Activity implements
                         endOfPeaks = true;
                     }
                     if (!endOfPeaks) {
-                        microEFF = capillary.getMicroEFF(timePeaks[i] * 60) * 1000 - microEOF;
+                        microEFF = capillary.getMicroEFF(timePeaks[i] * 60) - microEOF;
                         /* Display the value of mobility for this peak */
-                        tvMicroEFF[i].setText(doubleDecimalFormat.format(microEFF) + "E-03 cm2/V/s");
+                        tvMicroEFF[i].setText(doubleDecimalScientificFormat.format(microEFF) + " cm2/V/s");
                     } else {
                         tvMicroEFF[i].setText("-");
                         /* Hide the value for this peak */

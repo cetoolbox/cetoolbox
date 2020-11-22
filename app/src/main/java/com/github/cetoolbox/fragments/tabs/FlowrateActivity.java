@@ -253,11 +253,14 @@ public class FlowrateActivity extends Activity implements
 				capillary.setElectroOsmosisTime(electroOsmosisTimeSecond);
 
 				DecimalFormat doubleDecimalFormat = new DecimalFormat("#.##");
+				DecimalFormat doubleDecimalScientificFormat = new DecimalFormat("#.##E0");
 
 				Double fieldStrength = capillary.getFieldStrength(); /* V/cm */
 				Double microEOF = 0.0;
+
+				/* Compute the microEOF mobility if the electro-osmosis time is not infinite*/
 				if (electroOsmosisTimeSpinPosition < 2) {
-					microEOF = capillary.getMicroEOF() * 1000; /* E-3 cm2/V/s */
+					microEOF = capillary.getMicroEOF(); /* E-3 cm2/V/s */
 				}
 				Double lengthPerMinute = capillary.getLengthPerMinute(); /* m */
 				Double flowRate = capillary.getFlowRate(); /* nL/min */
@@ -286,8 +289,8 @@ public class FlowrateActivity extends Activity implements
 						.format(fieldStrength) + " V/cm");
 				TextView tvMicroEOF = (TextView) flowRateDetailsView
 						.findViewById(R.id.microEOFValue);
-				tvMicroEOF.setText(doubleDecimalFormat.format(microEOF)
-						+ "E-03 cm2/V/s");
+				tvMicroEOF.setText(doubleDecimalScientificFormat.format(microEOF)
+						+ " cm2/V/s");
 				TextView tvLengthPerMinute = (TextView) flowRateDetailsView
 						.findViewById(R.id.lengthPerMinuteValue);
 				tvLengthPerMinute.setText(doubleDecimalFormat
