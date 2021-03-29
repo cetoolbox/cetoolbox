@@ -470,7 +470,7 @@ public class InjectionActivity extends Activity implements
             duration = 10.0;
             viscosity = 1.0;
             concentration = 1.0;
-            concentrationSpinPosition = 0;
+            concentrationSpinPosition = 1;
             molecularWeight = 1000.0;
             voltage = 30000.0;
 

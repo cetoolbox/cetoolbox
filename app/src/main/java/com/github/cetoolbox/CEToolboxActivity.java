@@ -132,7 +132,7 @@ public class CEToolboxActivity extends TabActivity {
 						.getLong("electroOsmosisTime",
 								Double.doubleToLongBits(100.0))));
 		fragmentData.setConcentrationSpinPosition(preferences.getInt(
-				"concentrationSpinPosition", 0));
+				"concentrationSpinPosition", 1));
 		fragmentData.setPressureSpinPosition(preferences.getInt(
 				"pressureSpinPosition", 0));
 		fragmentData.setDetectionTimeSpinPosition(preferences.getInt(
