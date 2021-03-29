@@ -72,6 +72,18 @@
             android:layout_weight="1"
             android:autoLink="web"
             android:padding="5dp"
+            android:text="@string/About_equations" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_span="2"
+            android:layout_weight="1"
+            android:autoLink="web"
+            android:padding="5dp"
             android:text="@string/About_license" />
     </TableRow>
 </TableLayout>
