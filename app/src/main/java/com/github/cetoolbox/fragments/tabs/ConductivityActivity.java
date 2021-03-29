@@ -225,7 +225,7 @@ public class ConductivityActivity extends Activity implements
 				capillary.setElectricCurrent(electricCurrent);
 
 				DecimalFormat doubleDecimalFormat = new DecimalFormat("#.##");
-				Double conductivity = capillary.getConductivity(); /* nl */
+				Double conductivity = capillary.getConductivity(); /* mS/m */
 
 				/* Build the result window */
 				LayoutInflater li = LayoutInflater.from(this);
@@ -248,7 +248,7 @@ public class ConductivityActivity extends Activity implements
 				TextView tvConductivity = (TextView) conductivityDetailsView
 						.findViewById(R.id.conductivityValue);
 				tvConductivity.setText(doubleDecimalFormat.format(conductivity)
-						+ " S/m");
+						+ " mS/m");
 
 				builder.setNeutralButton("Close",
 						new DialogInterface.OnClickListener() {

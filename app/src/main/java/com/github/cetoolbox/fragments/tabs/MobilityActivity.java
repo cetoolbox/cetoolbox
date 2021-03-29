@@ -312,7 +312,7 @@ public class MobilityActivity extends Activity implements
                 TextView tvMicroEOF = (TextView) mobilityDetailsView
                         .findViewById(R.id.microEOFValue);
                 tvMicroEOF.setText(doubleDecimalScientificFormat.format(microEOF)
-                        + " cm2/V/s");
+                        + " m2/(V.s)");
                 boolean endOfPeaks = false;
                 TextView[] tvMicroEFF = new TextView[CEToolboxActivity.timePeakCount];
                 String microeff_name;
@@ -328,7 +328,7 @@ public class MobilityActivity extends Activity implements
                     if (!endOfPeaks) {
                         microEFF = capillary.getMicroEFF(timePeaks[i] * 60) - microEOF;
                         /* Display the value of mobility for this peak */
-                        tvMicroEFF[i].setText(doubleDecimalScientificFormat.format(microEFF) + " cm2/V/s");
+                        tvMicroEFF[i].setText(doubleDecimalScientificFormat.format(microEFF) + " m2/(V.s)");
                     } else {
                         tvMicroEFF[i].setText("-");
                         /* Hide the value for this peak */
