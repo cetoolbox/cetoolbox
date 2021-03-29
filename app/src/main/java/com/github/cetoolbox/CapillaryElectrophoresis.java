@@ -182,7 +182,7 @@ public class CapillaryElectrophoresis {
 	public double getConductivity() {
 		double conductivity;
 		conductivity = (4 * totalLength * Math.pow(10, 4) * electricCurrent)
-				/ (Math.PI * Math.pow(diameter, 2) * voltage);
+				/ (Math.PI * Math.pow(diameter, 2) * voltage) * Math.pow(10, 3);
 		return conductivity;
 	}
 
@@ -195,21 +195,21 @@ public class CapillaryElectrophoresis {
 	public double getMicroEOF() {
 		double microEOF;
 		microEOF = (totalLength * toWindowLength)
-				/ (electroOsmosisTime * voltage);
+				/ (electroOsmosisTime * voltage) * Math.pow(10, -4);
 		return microEOF;
 	}
 
 	public double getMicroEFF(double peakTime) {
 		double microEFF;
 		microEFF = (totalLength * toWindowLength)
-				/ (peakTime * voltage);
+				/ (peakTime * voltage) * Math.pow(10, -4);
 		return microEFF;
 	}
 
 	public double getLengthPerMinute() {
 		double lengthPerMinute;
 		lengthPerMinute = (60 * getMicroEOF() * getFieldStrength() * Math.pow(
-				10, -2));
+				10, 2));
 		return lengthPerMinute;
 	}
 

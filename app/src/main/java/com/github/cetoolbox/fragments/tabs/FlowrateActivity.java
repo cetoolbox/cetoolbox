@@ -260,7 +260,7 @@ public class FlowrateActivity extends Activity implements
 
 				/* Compute the microEOF mobility if the electro-osmosis time is not infinite*/
 				if (electroOsmosisTimeSpinPosition < 2) {
-					microEOF = capillary.getMicroEOF(); /* E-3 cm2/V/s */
+					microEOF = capillary.getMicroEOF(); /* m2/(V.s) */
 				}
 				Double lengthPerMinute = capillary.getLengthPerMinute(); /* m */
 				Double flowRate = capillary.getFlowRate(); /* nL/min */
@@ -290,7 +290,7 @@ public class FlowrateActivity extends Activity implements
 				TextView tvMicroEOF = (TextView) flowRateDetailsView
 						.findViewById(R.id.microEOFValue);
 				tvMicroEOF.setText(doubleDecimalScientificFormat.format(microEOF)
-						+ " cm2/V/s");
+						+ " m2/(V.s)");
 				TextView tvLengthPerMinute = (TextView) flowRateDetailsView
 						.findViewById(R.id.lengthPerMinuteValue);
 				tvLengthPerMinute.setText(doubleDecimalFormat
