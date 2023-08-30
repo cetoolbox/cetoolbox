@@ -55,23 +55,20 @@ public class CEToolboxActivity extends TabActivity {
 			intent = new Intent(this.getBaseContext(), InjectionActivity.class);
 			spec = tabHost.newTabSpec("injection");
 			spec.setContent(intent);
-			spec.setIndicator("Injection",
-					res.getDrawable(R.drawable.ic_action_injection));
+			spec.setIndicator("Injection");
 			tabHost.addTab(spec);
 
 			intent = new Intent(this.getBaseContext(),
 					ConductivityActivity.class);
 			spec = tabHost.newTabSpec("conductivity");
 			spec.setContent(intent);
-			spec.setIndicator("Conductivity",
-					res.getDrawable(R.drawable.ic_action_conductivity));
+			spec.setIndicator("Conductivity");
 			tabHost.addTab(spec);
 
 			intent = new Intent(this.getBaseContext(), FlowrateActivity.class);
 			spec = tabHost.newTabSpec("flowrate");
 			spec.setContent(intent);
-			spec.setIndicator("Flowrate",
-					res.getDrawable(R.drawable.ic_action_flowrate));
+			spec.setIndicator("Flowrate");
 			tabHost.addTab(spec);
 
 			intent = new Intent(this.getBaseContext(),
@@ -82,15 +79,13 @@ public class CEToolboxActivity extends TabActivity {
 			intent = new Intent(this.getBaseContext(), ViscosityActivity.class);
 			spec = tabHost.newTabSpec("viscosity");
 			spec.setContent(intent);
-			spec.setIndicator("Viscosity",
-					res.getDrawable(R.drawable.ic_action_viscosity));
+			spec.setIndicator("Viscosity");
 			tabHost.addTab(spec);
 
 			intent = new Intent(this.getBaseContext(), AboutActivity.class);
 			spec = tabHost.newTabSpec("about");
 			spec.setContent(intent);
-			spec.setIndicator("About",
-					res.getDrawable(R.drawable.ic_action_about));
+			spec.setIndicator("About");
 			tabHost.addTab(spec);
 
 			tabHost.setCurrentTab(0);
