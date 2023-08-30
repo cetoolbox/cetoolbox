@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Copyright (C) 2012-2014 CNRS and University of Strasbourg
   
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,22 +17,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_weight="1" >
+    android:layout_weight="1">
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:labelFor="@id/capillaryLengthValue"
-                android:text="@string/CapillaryLength" >
+                android:text="@string/CapillaryLength">
 
                 <requestFocus />
             </TextView>
@@ -43,7 +43,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal" />
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -54,7 +56,8 @@
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,7 +71,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal" />
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -79,7 +84,8 @@
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,7 +99,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal" />
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,7 +112,8 @@
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -118,7 +127,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal" />
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -129,7 +140,8 @@
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -143,14 +155,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal" />
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:minHeight="48dp" />
 
             <Spinner
                 android:id="@+id/electroOsmosisTimeSpin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawSelectorOnTop="true" />
+                android:drawSelectorOnTop="true"
+                android:minHeight="48dp" />
         </TableRow>
 
         <TableRow
@@ -160,16 +175,16 @@
 
             <Button
                 android:id="@+id/button1"
+                style="@android:style/Widget.Material.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="?android:attr/buttonBarButtonStyle"
                 android:text="@string/Calculate" />
 
             <Button
                 android:id="@+id/button2"
+                style="@android:style/Widget.Material.Button.Borderless.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="?android:attr/borderlessButtonStyle"
                 android:text="@string/Reset"
                 tools:ignore="ButtonStyle" />
         </TableRow>
