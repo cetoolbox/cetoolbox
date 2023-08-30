@@ -70,15 +70,15 @@ public class ConductivityActivity extends Activity implements
 				getBaseContext().getResources().getDisplayMetrics());
 		this.setContentView(R.layout.conductivity);
 
-		capillaryLengthValue = (EditText) findViewById(R.id.capillaryLengthValue);
-		diameterValue = (EditText) findViewById(R.id.diameterValue);
-		toWindowLengthValue = (EditText) findViewById(R.id.toWindowLengthValue);
-		voltageValue = (EditText) findViewById(R.id.voltageValue);
-		electricCurrentValue = (EditText) findViewById(R.id.electricCurrentValue);
+		capillaryLengthValue = findViewById(R.id.capillaryLengthValue);
+		diameterValue = findViewById(R.id.diameterValue);
+		toWindowLengthValue = findViewById(R.id.toWindowLengthValue);
+		voltageValue = findViewById(R.id.voltageValue);
+		electricCurrentValue = findViewById(R.id.electricCurrentValue);
 
-		calculate = (Button) findViewById(R.id.button1);
+		calculate = findViewById(R.id.button1);
 		calculate.setOnClickListener(this);
-		reset = (Button) findViewById(R.id.button2);
+		reset = findViewById(R.id.button2);
 		reset.setOnClickListener(this);
 
 		getGlobalStateValues();
@@ -245,7 +245,7 @@ public class ConductivityActivity extends Activity implements
 				title.setGravity(Gravity.CENTER);
 				builder.setCustomTitle(title);
 
-				TextView tvConductivity = (TextView) conductivityDetailsView
+				TextView tvConductivity = conductivityDetailsView
 						.findViewById(R.id.conductivityValue);
 				tvConductivity.setText(doubleDecimalFormat.format(conductivity)
 						+ " mS/m");

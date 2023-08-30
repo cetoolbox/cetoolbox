@@ -423,7 +423,7 @@ public class InjectionActivity extends Activity implements
                         + " V/cm");
 
                 if (isFull) {
-                    TextView tvMessage = (TextView) InjectionDetailsView
+                    TextView tvMessage = InjectionDetailsView
                             .findViewById(R.id.injectionMessage);
                     tvMessage.setTextColor(Color.RED);
                     tvMessage.setTypeface(null, Typeface.BOLD);
