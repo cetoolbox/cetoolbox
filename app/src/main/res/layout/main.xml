@@ -27,7 +27,6 @@
         <HorizontalScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#cccccc"
             android:fillViewport="true"
             android:scrollbars="none">
 

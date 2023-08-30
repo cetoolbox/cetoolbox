@@ -309,7 +309,7 @@ public class MobilityActivity extends Activity implements
                 title.setPadding(10, 10, 10, 10);
                 title.setGravity(Gravity.CENTER);
                 builder.setCustomTitle(title);
-                TextView tvMicroEOF = (TextView) mobilityDetailsView
+                TextView tvMicroEOF = mobilityDetailsView
                         .findViewById(R.id.microEOFValue);
                 tvMicroEOF.setText(doubleDecimalScientificFormat.format(microEOF)
                         + " m2/(V.s)");

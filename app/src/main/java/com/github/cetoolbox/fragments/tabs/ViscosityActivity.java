@@ -78,11 +78,11 @@ public class ViscosityActivity extends Activity implements
                 getBaseContext().getResources().getDisplayMetrics());
         this.setContentView(R.layout.viscosity);
 
-        capillaryLengthValue = (EditText) findViewById(R.id.capillaryLengthValue);
-        diameterValue = (EditText) findViewById(R.id.diameterValue);
-        toWindowLengthValue = (EditText) findViewById(R.id.toWindowLengthValue);
-        pressureValue = (EditText) findViewById(R.id.pressureValue);
-        pressureSpin = (Spinner) findViewById(R.id.pressureSpin);
+        capillaryLengthValue = findViewById(R.id.capillaryLengthValue);
+        diameterValue = findViewById(R.id.diameterValue);
+        toWindowLengthValue = findViewById(R.id.toWindowLengthValue);
+        pressureValue = findViewById(R.id.pressureValue);
+        pressureSpin = findViewById(R.id.pressureSpin);
         pressureSpin.setOnItemSelectedListener(this);
         ArrayAdapter<CharSequence> pressureUnitsAdapter = ArrayAdapter
                 .createFromResource(this, R.array.pressureUnitArray,
@@ -90,8 +90,8 @@ public class ViscosityActivity extends Activity implements
         pressureUnitsAdapter
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         pressureSpin.setAdapter(pressureUnitsAdapter);
-        detectionTimeValue = (EditText) findViewById(R.id.detectionTimeValue);
-        detectionTimeSpin = (Spinner) findViewById(R.id.detectionTimeSpin);
+        detectionTimeValue = findViewById(R.id.detectionTimeValue);
+        detectionTimeSpin = findViewById(R.id.detectionTimeSpin);
         detectionTimeSpin.setOnItemSelectedListener(this);
         ArrayAdapter<CharSequence> detectionTimeUnitsAdapter = ArrayAdapter
                 .createFromResource(this, R.array.detectionTimeUnitArray,
@@ -100,9 +100,9 @@ public class ViscosityActivity extends Activity implements
                 .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         detectionTimeSpin.setAdapter(detectionTimeUnitsAdapter);
 
-        calculate = (Button) findViewById(R.id.button1);
+        calculate = findViewById(R.id.button1);
         calculate.setOnClickListener(this);
-        reset = (Button) findViewById(R.id.button2);
+        reset = findViewById(R.id.button2);
         reset.setOnClickListener(this);
 
         getGlobalStateValues();
@@ -297,7 +297,7 @@ public class ViscosityActivity extends Activity implements
                 title.setGravity(Gravity.CENTER);
                 builder.setCustomTitle(title);
 
-                TextView tvHydrodynamicInjection = (TextView) viscosityDetailsView
+                TextView tvHydrodynamicInjection = viscosityDetailsView
                         .findViewById(R.id.viscosityValue);
 
                 tvHydrodynamicInjection.setText(doubleDecimalFormat

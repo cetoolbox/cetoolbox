@@ -75,11 +75,11 @@ public class FlowrateActivity extends Activity implements
 				getBaseContext().getResources().getDisplayMetrics());
 		this.setContentView(R.layout.flowrate);
 
-		capillaryLengthValue = (EditText) findViewById(R.id.capillaryLengthValue);
-		diameterValue = (EditText) findViewById(R.id.diameterValue);
-		toWindowLengthValue = (EditText) findViewById(R.id.toWindowLengthValue);
-		electroOsmosisTimeValue = (EditText) findViewById(R.id.electroOsmosisTimeValue);
-		electroOsmosisTimeSpin = (Spinner) findViewById(R.id.electroOsmosisTimeSpin);
+		capillaryLengthValue = findViewById(R.id.capillaryLengthValue);
+		diameterValue = findViewById(R.id.diameterValue);
+		toWindowLengthValue = findViewById(R.id.toWindowLengthValue);
+		electroOsmosisTimeValue = findViewById(R.id.electroOsmosisTimeValue);
+		electroOsmosisTimeSpin = findViewById(R.id.electroOsmosisTimeSpin);
 		electroOsmosisTimeSpin.setOnItemSelectedListener(this);
 		ArrayAdapter<CharSequence> electroOsmosisTimeUnitsAdapter = ArrayAdapter
 				.createFromResource(this, R.array.electroOsmosisTimeUnitArray,
@@ -87,11 +87,11 @@ public class FlowrateActivity extends Activity implements
 		electroOsmosisTimeUnitsAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		electroOsmosisTimeSpin.setAdapter(electroOsmosisTimeUnitsAdapter);
-		voltageValue = (EditText) findViewById(R.id.voltageValue);
+		voltageValue = findViewById(R.id.voltageValue);
 
-		calculate = (Button) findViewById(R.id.button1);
+		calculate = findViewById(R.id.button1);
 		calculate.setOnClickListener(this);
-		reset = (Button) findViewById(R.id.button2);
+		reset = findViewById(R.id.button2);
 		reset.setOnClickListener(this);
 
 		getGlobalStateValues();
@@ -283,19 +283,19 @@ public class FlowrateActivity extends Activity implements
 				title.setGravity(Gravity.CENTER);
 				builder.setCustomTitle(title);
 
-				TextView tvFieldStrength = (TextView) flowRateDetailsView
+				TextView tvFieldStrength = flowRateDetailsView
 						.findViewById(R.id.fieldStrengthValue);
 				tvFieldStrength.setText(doubleDecimalFormat
 						.format(fieldStrength) + " V/cm");
-				TextView tvMicroEOF = (TextView) flowRateDetailsView
+				TextView tvMicroEOF = flowRateDetailsView
 						.findViewById(R.id.microEOFValue);
 				tvMicroEOF.setText(doubleDecimalScientificFormat.format(microEOF)
 						+ " m2/(V.s)");
-				TextView tvLengthPerMinute = (TextView) flowRateDetailsView
+				TextView tvLengthPerMinute = flowRateDetailsView
 						.findViewById(R.id.lengthPerMinuteValue);
 				tvLengthPerMinute.setText(doubleDecimalFormat
 						.format(lengthPerMinute) + " m");
-				TextView tvFlowRate = (TextView) flowRateDetailsView
+				TextView tvFlowRate = flowRateDetailsView
 						.findViewById(R.id.flowRateValue);
 				tvFlowRate.setText(doubleDecimalFormat.format(flowRate)
 						+ " nL/min");
