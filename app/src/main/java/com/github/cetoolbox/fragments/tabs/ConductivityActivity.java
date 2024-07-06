@@ -85,7 +85,7 @@ public class ConductivityActivity extends Activity implements
 	}
 
 	@Override
-	protected void onRestoreInstanceState(Bundle savedInstanceState) {
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 
 		capillaryLength = savedInstanceState.getDouble("capillaryLength");
@@ -129,11 +129,11 @@ public class ConductivityActivity extends Activity implements
 	}
 
 	private void editTextInitialize() {
-		capillaryLengthValue.setText(capillaryLength.toString());
-		toWindowLengthValue.setText(toWindowLength.toString());
-		diameterValue.setText(diameter.toString());
-		voltageValue.setText(voltage.toString());
-		electricCurrentValue.setText(electricCurrent.toString());
+		capillaryLengthValue.setText(String.format(capillaryLength.toString()));
+		toWindowLengthValue.setText(String.format(toWindowLength.toString()));
+		diameterValue.setText(String.format(diameter.toString()));
+		voltageValue.setText(String.format(voltage.toString()));
+		electricCurrentValue.setText(String.format(electricCurrent.toString()));
 	}
 
 	/*
@@ -156,16 +156,16 @@ public class ConductivityActivity extends Activity implements
 		}
 
 		if (errorMessage.length() == 0) {
-			if (Double.valueOf(capillaryLengthValue.getText().toString()) == 0) {
+			if (Double.parseDouble(capillaryLengthValue.getText().toString()) == 0) {
 				errorMessage = "The capillary length can not be null.";
-			} else if (Double.valueOf(toWindowLengthValue.getText().toString()) == 0) {
+			} else if (Double.parseDouble(toWindowLengthValue.getText().toString()) == 0) {
 				errorMessage = "The length to window can not be null.";
-			} else if (Double.valueOf(diameterValue.getText().toString()) == 0) {
+			} else if (Double.parseDouble(diameterValue.getText().toString()) == 0) {
 				errorMessage = "The diameter can not be null.";
-			} else if (Double.valueOf(voltageValue.getText().toString()) == 0) {
+			} else if (Double.parseDouble(voltageValue.getText().toString()) == 0) {
 				errorMessage = "The voltage can not be null.";
 			} else if (Double
-					.valueOf(electricCurrentValue.getText().toString()) == 0) {
+					.parseDouble(electricCurrentValue.getText().toString()) == 0) {
 				errorMessage = "The detection time can not be null.";
 			}
 		}
@@ -345,31 +345,31 @@ public class ConductivityActivity extends Activity implements
 
 		try {
 			state.putDouble("capillaryLength",
-					Double.valueOf(capillaryLengthValue.getText().toString()));
+					Double.parseDouble(capillaryLengthValue.getText().toString()));
 		} catch (Exception e) {
 			state.putDouble("capillaryLength", capillaryLength);
 		}
 		try {
 			state.putDouble("toWindowLength",
-					Double.valueOf(toWindowLengthValue.getText().toString()));
+					Double.parseDouble(toWindowLengthValue.getText().toString()));
 		} catch (Exception e) {
 			state.putDouble("toWindowLength", toWindowLength);
 		}
 		try {
 			state.putDouble("diameter",
-					Double.valueOf(diameterValue.getText().toString()));
+					Double.parseDouble(diameterValue.getText().toString()));
 		} catch (Exception e) {
 			state.putDouble("diameter", diameter);
 		}
 		try {
 			state.putDouble("voltage",
-					Double.valueOf(voltageValue.getText().toString()));
+					Double.parseDouble(voltageValue.getText().toString()));
 		} catch (Exception e) {
 			state.putDouble("voltage", voltage);
 		}
 		try {
 			state.putDouble("electricCurrent",
-					Double.valueOf(electricCurrentValue.getText().toString()));
+					Double.parseDouble(electricCurrentValue.getText().toString()));
 		} catch (Exception e) {
 			state.putDouble("electricCurrent", electricCurrent);
 		}
