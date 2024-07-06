@@ -101,5 +101,6 @@
     <string name="MicroEFF18">μEFF18</string>
     <string name="MicroEFF19">μEFF19</string>
     <string name="MicroEFF20">μEFF20</string>
+    <string name="About_citation">The following citation can be used for this software: François, Y.N., Biacchi, M., Gahoual, R., Vezin, A. and Pansanel, J. (2021), CEToolbox: Specialized calculator for capillary electrophoresis users as an android application. ELECTROPHORESIS, 42: 1431–1435. https://doi.org/10.1002/elps.202100036</string>
 
 </resources>
