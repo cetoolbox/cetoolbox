@@ -4,16 +4,6 @@
     "applicationCategory": "Analytical chemistry",
     "author": [
         {
-            "id": "_:author_1",
-            "type": "Person",
-            "affiliation": {
-                "type": "Organization",
-                "name": "Laboratoire de Spectrométrie de Masse des Interactions et des Systèmes"
-            },
-            "familyName": "Biacchi",
-            "givenName": "Michael"
-        },
-        {
             "id": "https://orcid.org/0000-0002-8776-071X",
             "type": "Person",
             "affiliation": {
@@ -23,6 +13,17 @@
             "email": "yfrancois@unistra.fr",
             "familyName": "François",
             "givenName": "Yannis"
+        },
+        {
+            "id": "https://orcid.org/0000-0002-7067-5009",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Institut Pluridisciplinaire Hubert Curien"
+            },
+            "email": "jerome.pansanel@iphc.cnrs.fr",
+            "familyName": "Pansanel",
+            "givenName": "Jérôme"
         },
         {
             "id": "https://orcid.org/0000-0001-8459-3138",
@@ -35,15 +36,24 @@
             "givenName": "Rabah"
         },
         {
-            "id": "https://orcid.org/0000-0002-7067-5009",
+            "id": "_:author_1",
             "type": "Person",
             "affiliation": {
                 "type": "Organization",
-                "name": "Institut Pluridisciplinaire Hubert Curien"
+                "name": "Laboratoire de Spectrométrie de Masse des Interactions et des Systèmes"
             },
-            "email": "jerome.pansanel@iphc.cnrs.fr",
-            "familyName": "Pansanel",
-            "givenName": "Jérôme"
+            "familyName": "Biacchi",
+            "givenName": "Michael"
+        },
+        {
+            "id": "_:author_2",
+            "type": "Person",
+            "affiliation": {
+                "type": "Organization",
+                "name": "Laboratoire de Spectrométrie de Masse des Interactions et des Systèmes"
+            },
+            "familyName": "Vezin",
+            "givenName": "Aurélien"
         }
     ],
     "codeRepository": "https://github.com/cetoolbox/cetoolbox.git",
