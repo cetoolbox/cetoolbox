@@ -33,6 +33,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
 import java.text.DecimalFormat;
 import java.util.Locale;
 import com.github.cetoolbox.CEToolboxActivity;
@@ -109,7 +112,7 @@ public class ViscosityActivity extends Activity implements
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
         capillaryLength = savedInstanceState.getDouble("capillaryLength");
@@ -195,7 +198,7 @@ public class ViscosityActivity extends Activity implements
             errorMessage = "The detectionTime field is empty.";
         }
 
-        if (errorMessage.length() == 0) {
+        if (errorMessage.isEmpty()) {
             if (Double.valueOf(capillaryLengthValue.getText().toString()) == 0) {
                 errorMessage = "The capillary length can not be null.";
             } else if (Double.valueOf(toWindowLengthValue.getText().toString()) == 0) {
@@ -221,7 +224,7 @@ public class ViscosityActivity extends Activity implements
             String errorMessage;
 
             errorMessage = parseEditTextContent();
-            if (errorMessage.length() == 0) {
+            if (errorMessage.isEmpty()) {
                 validatedValues = true;
             }
             if (validatedValues) {
@@ -406,7 +409,7 @@ public class ViscosityActivity extends Activity implements
     }
 
     @Override
-    public void onSaveInstanceState(Bundle state) {
+    public void onSaveInstanceState(@NonNull Bundle state) {
         try {
             state.putDouble("capillaryLength",
                     Double.valueOf(capillaryLengthValue.getText().toString()));
