@@ -14,9 +14,9 @@ android {
     defaultConfig {
         applicationId "com.github.cetoolbox"
         minSdk 21
-        targetSdk 34
-        versionCode 16
-        versionName "1.6.0"
+        targetSdk 36
+        versionCode 17
+        versionName "1.6.1"
     }
 
     buildTypes {
@@ -31,4 +31,8 @@ android {
         }
     }
     namespace 'com.github.cetoolbox'
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.9.1'
 }
