@@ -34,6 +34,8 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.github.cetoolbox.CEToolboxActivity;
 import com.github.cetoolbox.CapillaryElectrophoresis;
 import com.github.cetoolbox.R;
@@ -111,7 +113,7 @@ public class MobilityActivity extends Activity implements
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
         capillaryLength = savedInstanceState.getDouble("capillaryLength");
@@ -199,7 +201,7 @@ public class MobilityActivity extends Activity implements
             errorMessage = "The electro-osmosis time field is empty.";
         }
 
-        if (errorMessage.length() == 0) {
+        if (errorMessage.isEmpty()) {
             if (Double.valueOf(capillaryLengthValue.getText().toString()) == 0) {
                 errorMessage = "The capillary length can not be null.";
             } else if (Double.valueOf(toWindowLengthValue.getText().toString()) == 0) {
@@ -283,7 +285,6 @@ public class MobilityActivity extends Activity implements
                 }
                 capillary.setElectroOsmosisTime(electroOsmosisTimeSecond);
 
-                DecimalFormat doubleDecimalFormat = new DecimalFormat("#.##");
                 DecimalFormat doubleDecimalScientificFormat = new DecimalFormat("#.##E0");
 
                 /* Compute the microEOF mobility if the electro-osmosis time is not infinite*/

@@ -31,6 +31,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
 import java.text.DecimalFormat;
 import java.util.Locale;
 import com.github.cetoolbox.CEToolboxActivity;
@@ -85,7 +88,7 @@ public class ConductivityActivity extends Activity implements
 	}
 
 	@Override
-	public void onRestoreInstanceState(Bundle savedInstanceState) {
+	public void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 
 		capillaryLength = savedInstanceState.getDouble("capillaryLength");
@@ -155,7 +158,7 @@ public class ConductivityActivity extends Activity implements
 			errorMessage = "The electricCurrent field is empty.";
 		}
 
-		if (errorMessage.length() == 0) {
+		if (errorMessage.isEmpty()) {
 			if (Double.parseDouble(capillaryLengthValue.getText().toString()) == 0) {
 				errorMessage = "The capillary length can not be null.";
 			} else if (Double.parseDouble(toWindowLengthValue.getText().toString()) == 0) {
@@ -180,7 +183,7 @@ public class ConductivityActivity extends Activity implements
 			String errorMessage;
 
 			errorMessage = parseEditTextContent();
-			if (errorMessage.length() == 0) {
+			if (errorMessage.isEmpty()) {
 				validatedValues = true;
 			}
 			if (validatedValues) {
@@ -339,7 +342,7 @@ public class ConductivityActivity extends Activity implements
 	}
 
 	@Override
-	public void onSaveInstanceState(Bundle state) {
+	public void onSaveInstanceState(@NonNull Bundle state) {
 		// call the super class onCreate to complete the creation of activity like
 		// the view hierarchy
 
